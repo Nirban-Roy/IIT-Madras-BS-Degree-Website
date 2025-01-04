@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>IIT Madras Diploma - Academics</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter font (optional) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* 
+      BRAND / DESIGN COLORS:
+        - Primary:    #2A3C88
+        - Darker:     #1C2A5C
+        - Accent:     #FFC466
+        - Light BG:   #E6E8F5
+        - Extra Blue: #3C4E9C (or any other you like)
+    */
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      color: #2A3C88;  /* dark text for contrast */
+      background-color: #E6E8F5;
+    }
+
+    /* Ensure headings are visible when navigating via anchor links. */
+    section[id] {
+      scroll-margin-top: 7rem;  /* Enough offset so the sticky header won't overlap */
+    }
+
+    /* HEADER & FOOTER */
+    .brand-header {
+      background-color: #2A3C88;
+      color: #fff;
+    }
+    .brand-footer {
+      background-color: #1C2A5C;
+      color: #fff;
+    }
+
+    /* NAVIGATION & DROPDOWN MENU */
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-menu {
+      display: none; /* hidden by default, toggled via JavaScript */
+      position: absolute;
+      top: 60px;       /* or 100% + some px, but 60px often works well with a top nav */
+      left: 0;
+      min-width: 12rem;
+      border-radius: 0.4rem;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+      z-index: 999;
+      /* GRADIENT BACKGROUND for dropdown */
+      background: linear-gradient(
+        135deg,
+        #2A3C88 0%,
+        #3C4E9C 100%
+      );
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+    }
+    .dropdown-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: scale(1.02);
+    }
+
+    /* BUTTONS */
+    .brand-btn {
+      /* GRADIENT for 'Apply Now' */
+      background: linear-gradient(
+        90deg,
+        rgba(255,196,102,1),
+        rgba(255,153,0,1)
+      );
+      color: #2A3C88;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .brand-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,153,0,0.4);
+    }
+    .brand-btn-alt {
+      background-color: #fff;
+      color: #2A3C88;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .brand-btn-alt:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* MAIN CONTENT AREA */
+    .content-area {
+      /* Subtle gradient for main content area to add variety */
+      background: linear-gradient(
+        to bottom right,
+        #ffffff,
+        #F0F4FF,
+        #E6E8F5
+      );
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-heading {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .info-box {
+      background-color: rgba(255,255,255,0.7);
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .info-box:hover {
+      background-color: rgba(255,255,255,0.85);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* TABLE STYLES */
+    .custom-table {
+      border-radius: 0.75rem;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .custom-table table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    .custom-table thead {
+      background-color: #2A3C88;
+    }
+    .custom-table thead th {
+      color: #FFC466;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    .custom-table tbody tr {
+      border-bottom: 1px solid #ccc;
+    }
+    .custom-table tbody tr:hover {
+      background-color: rgba(230,232,245,0.4);
+    }
+    .custom-table tbody td {
+      padding: 0.75rem;
+      color: #2A3C88;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="brand-header w-full py-4 px-6 shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+
+      <!-- Logo / Title -->
+      <div
+        class="flex items-center space-x-3 cursor-pointer mb-3 md:mb-0"
+        onclick="window.location.href='homeDiploma.html'"
+      >
+        <img 
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-10 h-10"
+        />
+        <h1 class="text-xl md:text-2xl font-extrabold">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex space-x-6 text-sm md:text-base relative">
+        <!-- Academics (on click -> toggle) -->
+        <div class="dropdown">
+          <button 
+            class="font-medium focus:outline-none"
+            onclick="toggleDropdown('academicsMenu')"
+          >
+            Academics
+          </button>
+          <div 
+            id="academicsMenu" 
+            class="dropdown-menu"
+          >
+            <a href="#term-structure">Term Structure</a>
+            <a href="#course-registrations">Course Registrations</a>
+            <a href="#assessments">Assessments</a>
+            <a href="#exam-cities">Exam Cities</a>
+            <a href="#fee-structure">Fee Structure</a>
+            <a href="#dip-prog">Diploma in Programming</a>
+            <a href="#dip-data-science">Diploma in Data Science</a>
+          </div>
+        </div>
+
+        <!-- Admissions -->
+        <div class="dropdown">
+          <button 
+            class="font-medium focus:outline-none"
+            onclick="toggleDropdown('admissionsMenu')"
+          >
+            Admissions
+          </button>
+          <div 
+            id="admissionsMenu" 
+            class="dropdown-menu"
+          >
+            <a href="admissionsDiploma.html#important-dates">Important Dates</a>
+            <a href="admissionsDiploma.html#application-process">Application Process</a>
+            <a href="admissionsDiploma.html#eligibility">Eligibility</a>
+            <a href="admissionsDiploma.html#fee-and-waivers">Fee &amp; Waivers</a>
+          </div>
+        </div>
+
+        <!-- Remove Student Life dropdown (as requested) -->
+
+        <!-- About IITM -->
+        <div class="dropdown">
+          <button
+            class="font-medium focus:outline-none"
+            onclick="toggleDropdown('aboutIITMMenu')"
+          >
+            About IITM
+          </button>
+          <div 
+            id="aboutIITMMenu" 
+            class="dropdown-menu"
+          >
+            <!-- Fix contents to have About IIT Madras, IITM’s Experience in Online Education, Merchandise link -->
+            <a href="aboutIITMDiploma.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMDiploma.html#iitm-experience">IITM’s Experience in Online Education</a>
+            <a 
+              href="https://podgoodies.iitmadrasonline.in/"
+              target="_blank"
+            >
+              Merchandise
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Buttons -->
+      <div class="flex space-x-3">
+        <button 
+          class="brand-btn-alt hidden md:block"
+          onclick="location.href='signinDiploma.html'"
+        >
+          Sign In
+        </button>
+        <button 
+          class="brand-btn hidden md:block"
+          onclick="window.open('https://applyDiploma.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT AREA -->
+  <section class="content-area max-w-7xl mx-auto">
+    
+    <!-- TERM STRUCTURE -->
+    <section id="term-structure" class="info-box">
+      <h2 class="section-heading">Term Structure</h2>
+      <img 
+        src="https://study.iitm.ac.in/diploma/assets/img/academics/course_structure_web.png"
+        alt="Diploma Term Structure"
+        class="mx-auto md:float-right md:w-1/2 md:ml-4 mb-4"
+      />
+      <p class="section-paragraph">
+        Every year is divided into three terms of four months each:
+        <strong>January Term</strong>, <strong>May Term</strong>, and
+        <strong>September Term</strong>. Each term includes 12 weeks of coursework,
+        two in-person Quizzes, and one End Term Exam.
+      </p>
+    </section>
+
+    <!-- COURSE REGISTRATIONS -->
+    <section id="course-registrations" class="info-box clear-both">
+      <h2 class="section-heading">Course Registrations</h2>
+      <p class="section-paragraph">
+        In each term, learners may register for up to <strong>4 courses</strong>.
+        Two foundational courses must be taken in the first term, and one or two
+        additional courses can be added, up to the maximum of 4 per term.
+      </p>
+      <p class="section-paragraph">
+        Some courses have a <strong>project component</strong> worth 2 credits.
+        Registering for such courses automatically includes the project. These can be
+        taken concurrently or in a later term.
+      </p>
+    </section>
+
+    <!-- ASSESSMENTS -->
+    <section id="assessments" class="info-box">
+      <h2 class="section-heading">Assessments</h2>
+      <p class="section-paragraph">
+        There are 3 types of assessments for each course:
+      </p>
+      <ul class="list-disc list-inside ml-4">
+        <li>Online Weekly Assignments</li>
+        <li>Monthly in-person Quizzes</li>
+        <li>In-person End Term Exams</li>
+      </ul>
+      <p class="section-paragraph">
+        Additional components may include programming exams, mini projects, vivas,
+        or other take-home assignments.
+      </p>
+    </section>
+
+    <!-- EXAM CITIES -->
+    <section id="exam-cities" class="info-box">
+      <h2 class="section-heading">Exam Cities</h2>
+      <p class="section-paragraph">
+        The in-person Quizzes and End Term Exams are conducted in multiple cities across India.
+        For learners based outside India, there are exam centers in
+        <strong>Bahrain, Kuwait, Oman,</strong> and <strong>UAE</strong>.
+        Other international learners may take remote proctored exams.
+      </p>
+      <p class="section-paragraph">
+        On exam day, students who write internet-based exams must declare their location.
+        If you plan to be in India for an exam, please notify us in advance so we can arrange
+        a seat at an Indian exam center. Violation of these norms may be considered malpractice.
+      </p>
+    </section>
+
+    <!-- FEE STRUCTURE -->
+    <section id="fee-structure" class="info-box">
+      <h2 class="section-heading">Fee Structure</h2>
+      <p class="section-paragraph">
+        You <strong>pay only for the courses you register for</strong> each term. 
+        Below is the fee breakdown:
+      </p>
+      <ul class="list-disc list-inside ml-4 mb-4">
+        <li><em>Foundational courses</em>: ₹4,000 per course</li>
+        <li><em>Skill Enhancement courses</em>: ₹7,500 per course</li>
+        <li><em>All other diploma courses</em>: ₹10,000 per course</li>
+        <li><em>Projects</em>: ₹2,500 per project</li>
+      </ul>
+      <p class="section-paragraph">
+        Additional exam fees apply for exams taken outside India. Fee waivers
+        are available based on socio-economic background.
+      </p>
+    </section>
+
+    <!-- DIPLOMA IN PROGRAMMING -->
+    <section id="dip-prog" class="info-box">
+      <h2 class="section-heading">Diploma in Programming</h2>
+      <p class="section-paragraph">
+        List of courses (4 credits each unless otherwise stated):
+      </p>
+      <div class="custom-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Type</th>
+              <th>Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Computational Thinking</td>
+              <td>Foundational</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Programming in Python</td>
+              <td>Foundational</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Database Management Systems</td>
+              <td>Programming</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Programming, Data Structures &amp; Algorithms using Python</td>
+              <td>Programming</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Modern Application Development I</td>
+              <td>Programming</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Modern Application Development I - Project</td>
+              <td>Project</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Programming Concepts using Java</td>
+              <td>Programming</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Modern Application Development II</td>
+              <td>Programming</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Modern Application Development II - Project</td>
+              <td>Project</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>System Commands</td>
+              <td>Skill Enhancement</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- DIPLOMA IN DATA SCIENCE -->
+    <section id="dip-data-science" class="info-box">
+      <h2 class="section-heading">Diploma in Data Science</h2>
+      <p class="section-paragraph">
+        List of courses (4 credits each unless otherwise stated):
+      </p>
+      <div class="custom-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Course Name</th>
+              <th>Type</th>
+              <th>Credits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mathematics for Data Science II</td>
+              <td>Foundational</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Statistics for Data Science II</td>
+              <td>Foundational</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Machine Learning Foundations</td>
+              <td>Data Science</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Business Data Management</td>
+              <td>Data Science</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Business Data Management - Project</td>
+              <td>Project</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Machine Learning Techniques</td>
+              <td>Data Science</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Machine Learning Practice</td>
+              <td>Data Science</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Machine Learning Practice - Project</td>
+              <td>Project</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Business Analytics</td>
+              <td>Data Science</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>Tools in Data Science</td>
+              <td>Skill Enhancement</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer py-8 mt-4">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+      <p class="text-sm">
+        IITM BS Degree Office, 3rd Floor, ICSR Building, <br/>
+        IIT Madras, Chennai - 600036
+      </p>
+      <p class="text-sm mt-3 mx-auto max-w-2xl leading-relaxed">
+        For any queries, please reach out to us via:
+        <a 
+          href="mailto:support-diploma@study.iitm.ac.in"
+          class="underline hover:text-gray-300"
+        >
+          support-diploma@study.iitm.ac.in
+        </a>
+        <br/>
+        Normal response time is 3 working days, but may be longer during busy periods.
+      </p>
+      <!-- Social Icons -->
+      <div class="flex space-x-4 justify-center mt-6">
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook.png"
+            alt="Facebook"
+          />
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/twitter.png"
+            alt="Twitter"
+          />
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/linkedin.png"
+            alt="LinkedIn"
+          />
+        </a>
+      </div>
+      <!-- Footer Links -->
+      <div class="text-sm mt-4 space-x-2">
+        <a href="#" class="hover:text-gray-300">Privacy Policy</a>|
+        <a href="#" class="hover:text-gray-300">Terms of Service</a>
+      </div>
+      <p class="text-sm mt-2">&copy; IIT Madras. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS FOR DROPDOWN (on click) -->
+  <script>
+    function toggleDropdown(menuId) {
+      // Close any other open dropdown
+      const allMenus = document.querySelectorAll('.dropdown-menu');
+      allMenus.forEach(menu => {
+        if (menu.id !== menuId) {
+          menu.style.display = 'none';
+        }
+      });
+      // Toggle this one
+      const dropdown = document.getElementById(menuId);
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(e) {
+      // If click was not on a dropdown button or inside the dropdown
+      if (
+        !e.target.matches('.dropdown button') &&
+        !e.target.closest('.dropdown-menu')
+      ) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

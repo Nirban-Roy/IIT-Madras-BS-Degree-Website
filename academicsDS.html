@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras BS Program - Academics</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      /* Let’s add some spacing to the top so that direct anchor jumps
+         (scrolling to sections) won't hide the headings behind sticky elements. */
+    }
+
+    /* Ensures headings are visible when jumping to anchors */
+    section[id] {
+      scroll-margin-top: 7rem; /* Adjust if needed */
+    }
+
+    /* MARQUEE (Announcement) */
+    .announcement-marquee {
+      background: #8b0000;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      25% {
+        transform: translateX(0%);
+      }
+      75% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(-200%);
+      }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(128, 128, 128, 1),
+        rgba(50, 50, 50, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(128, 128, 128, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(50, 50, 50, 1),
+        rgba(128, 128, 128, 1)
+      );
+    }
+
+    /* DROP DOWN MENU - OPEN ON CLICK */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      background: linear-gradient(90deg, rgba(239,68,68,1), rgba(245,158,11,1));
+      min-width: 16rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      z-index: 50;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+      display: none;
+    }
+    .dropdown a {
+      color: #fff;
+      padding: 0.5rem 1rem;
+      display: block;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      font-weight: 500;
+      border-radius: 0.25rem;
+    }
+    .dropdown a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN CONTENT STYLING */
+    /* Use a light pastel background (not brand red/orange) with some contrast */
+    .content-section {
+      background: #faf7e7;  /* pale pastel yellowish */
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    /* On hover, slightly change background for a gentle effect */
+    .content-section:hover {
+      background-color: #f3eed5; /* slightly darker pastel for effect */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .section-heading {
+      color: #ef4444;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* Rounder corners for tables and images */
+    .custom-table {
+      border-radius: 0.75rem; 
+      overflow: hidden;
+    }
+
+    /* SHIFTING AND SIZING IMAGES */
+    .shifted-img {
+      float: right;
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      max-width: 300px;     
+      border-radius: 1rem;  
+    }
+    /* Clear floats on each section, so text doesn't run into next section */
+    .clear-floats::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    /* CERTIFICATE HOVER (optional enlarge) */
+    .certificate-img {
+      border-radius: 1rem;
+      transition: transform 0.2s ease;
+    }
+    .certificate-img:hover {
+      transform: scale(1.04);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- HEADER -->
+  <header class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeDS.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with Dropdowns -->
+      <nav class="flex space-x-4 text-lg font-medium relative">
+        <!-- Academics (on click => show/hide dropdown) -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div
+            id="academicsDropdown"
+            class="dropdown-menu"
+          >
+            <!-- As requested: remove "open academics page" 
+                 and let "Overall Structure" open academics page. -->
+            <a href="academicsDS.html#overall-structure">Overall Structure</a>
+            <a href="academicsDS.html#term-structure">Term Structure</a>
+            <a href="academicsDS.html#course-registrations">Course Registrations</a>
+            <a href="academicsDS.html#assessments">Assessments</a>
+            <a href="academicsDS.html#exam-cities">Exam Cities</a>
+            <a href="academicsDS.html#fee-structure">Fee Structure</a>
+            <a href="academicsDS.html#foundation-level">Foundation Level</a>
+            <a href="academicsDS.html#diploma-level">Diploma Level</a>
+            <a href="academicsDS.html#bsc-degree-level">BSc Degree Level</a>
+            <a href="academicsDS.html#bs-degree-level">BS Degree Level</a>
+            <a href="academicsDS.html#degree-level-courses">Degree Level Courses</a>
+            <a href="academicsDS.html#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div id="admissionsDropdown" class="dropdown-menu">
+            <a href="admissionsDS.html#important-dates">Important Dates</a>
+            <a href="admissionsDS.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsDS.html#eligibility">Eligibility to Apply</a>
+            <a href="admissionsDS.html#application-process">Application Process</a>
+            <a href="admissionsDS.html#admission-foundation">Admission to the Foundation Level</a>
+            <a href="admissionsDS.html#regular-entry">1. Regular Entry</a>
+            <a href="admissionsDS.html#jee-entry">2. JEE-based Entry</a>
+            <a href="admissionsDS.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div id="studentLifeDropdown" class="dropdown-menu">
+            <a href="studentlifeDS.html#student-houses">Student Houses & Societies</a>
+            <a 
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home" 
+              target="_blank"
+            >
+              PARADOX/Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div id="aboutIITMDropdown" class="dropdown-menu">
+            <a href="aboutIITMDS.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMDS.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMDS.html#contact-us">Contact Us</a>
+            <a
+              href="https://podgoodies.iitmadrasonline.in/"
+              target="_blank"
+            >
+              Merchandise
+            </a>
+          </div>
+        </div>
+
+        <!-- Partnerships (no dropdown) -->
+        <div>
+          <a
+            href="partnershipsDS.html"
+            class="hover:text-yellow-400 transition-colors inline-block"
+          >
+            Partnerships
+          </a>
+        </div>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinDS.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10 space-y-12 text-gray-800">
+    
+    <!-- Overall Structure -->
+    <section id="overall-structure" class="content-section clear-floats">
+      <img 
+        src="https://study.iitm.ac.in/ds/assets/img/academics/Programme_Structure.jpg"
+        alt="IIT Madras Program Structure"
+        class="shifted-img"
+      />
+      <h2 class="section-heading">Overall Structure</h2>
+      <p class="section-paragraph">
+        The IIT Madras BS Degree Program offers a unique structure with four progressive levels. 
+        Students can exit at various points to earn a Foundational Certificate, Diploma(s), 
+        BSc Degree, or the full four-year BS Degree in Data Science and Applications. 
+        This modular approach ensures flexibility, allowing learners to advance at their 
+        own pace and choose the exit option that best fits their goals.
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li><strong>Foundation Level:</strong> 32 Credits (8 Courses)</li>
+        <li><strong>Diploma Level:</strong> 54 Credits (12 Courses + 4 Projects)</li>
+        <li><strong>BSc Degree Level:</strong> 28 Credits (Total 114 Credits so far)</li>
+        <li><strong>BS Degree Level:</strong> 28 Credits (Total 142 Credits)</li>
+      </ul>
+      <p class="section-paragraph">
+        Completion time ranges from <strong>4 to 8 years</strong> based on personal pace 
+        and performance in assessments. Learners may exit earlier by completing relevant credits 
+        and earn appropriate certification from IIT Madras.
+      </p>
+    </section>
+
+    <!-- Term Structure -->
+    <section id="term-structure" class="content-section clear-floats">
+      <img 
+        src="https://study.iitm.ac.in/ds/assets/img/academics/course_structure_web.png" 
+        alt="Course Structure" 
+        class="shifted-img"
+      />
+      <h2 class="section-heading">Term Structure</h2>
+      <p class="section-paragraph">
+        Each year is divided into three terms of four months each:
+        <strong>January Term, May Term, and September Term</strong>. Each term includes 
+        12 weeks of coursework, followed by in-person invigilated quizzes and End Term Exams. 
+        Assessments may include programming exams, mini projects, vivas, and take-home assignments.
+      </p>
+    </section>
+
+    <!-- Course Registrations -->
+    <section id="course-registrations" class="content-section">
+      <h2 class="section-heading">Course Registrations</h2>
+      <p class="section-paragraph">
+        Learners can register for up to four courses per term based on their Credit Clearing 
+        Capability (CCC). The CCC is determined by performance in the Qualifier Exam or the 
+        previous term’s End Term Exams. The Foundation Level CCC is 4, and the Diploma Level CCC 
+        is also 4. 
+      </p>
+      <p class="section-paragraph">
+        Foundation Level courses must be completed before enrolling in Diploma Level courses, 
+        and Diploma Level courses must be completed before proceeding to the Degree Level. 
+        This ensures a seamless transition and adequate preparation at every stage.
+      </p>
+    </section>
+
+    <!-- Assessments -->
+    <section id="assessments" class="content-section">
+      <h2 class="section-heading">Assessments</h2>
+      <p class="section-paragraph">
+        There are three primary types of assessments for each course:
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>Weekly Assignments (online)</li>
+        <li>Monthly in-person Quizzes</li>
+        <li>In-person End Term Exams</li>
+      </ul>
+      <p class="section-paragraph">
+        Additional components may include mini projects, programming exams, vivas, 
+        or take-home assignments, depending on the course. 
+      </p>
+    </section>
+
+    <!-- Exam Cities -->
+    <section id="exam-cities" class="content-section">
+      <h2 class="section-heading">Exam Cities</h2>
+      <p class="section-paragraph">
+        In-person Quizzes and End Term exams are conducted in multiple cities across India. 
+        For learners based outside India, there are exam centers in Bahrain, Kuwait, Oman, and UAE. 
+        Remote proctored exams are allowed for learners who are unable to attend in person; 
+        traveling learners must pin their location when taking internet-based exams.
+      </p>
+      <p class="section-paragraph">
+        If a student is abroad but plans to be in India for an exam day, they should notify 
+        the institute in advance to arrange a seat at one of the exam centers. 
+        Violation of guidelines may be considered malpractice and result in withheld exam results.
+      </p>
+    </section>
+
+    <!-- Fee Structure -->
+    <section id="fee-structure" class="content-section">
+      <h2 class="section-heading">Fee Structure</h2>
+      <p class="section-paragraph">
+        You <strong>pay only for the courses you register for</strong> in that specific term.
+        Below is an overview of the total credits and approximate tuition fees for each level:
+      </p>
+      <div class="overflow-x-auto custom-table mb-4">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Goal</th>
+              <th class="py-3 px-4 text-left">Total Credits</th>
+              <th class="py-3 px-4 text-left">Total Fees (INR)</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">Foundation Only</td>
+              <td class="py-3 px-4">32</td>
+              <td class="py-3 px-4">₹32,000</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Foundation + One Diploma</td>
+              <td class="py-3 px-4">59</td>
+              <td class="py-3 px-4">₹94,500</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Foundation + Two Diplomas</td>
+              <td class="py-3 px-4">86</td>
+              <td class="py-3 px-4">₹1,57,000</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">BSc Degree</td>
+              <td class="py-3 px-4">114</td>
+              <td class="py-3 px-4">₹2,21,000 - ₹2,27,000</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">BS Degree</td>
+              <td class="py-3 px-4">142</td>
+              <td class="py-3 px-4">₹3,15,000 - ₹3,51,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        Various scholarships are available based on family income and social background, 
+        offering up to 75% fee waivers for eligible students. 
+        Additional exam fees apply for those taking exams outside India.
+      </p>
+    </section>
+
+    <!-- Foundation Level -->
+    <section id="foundation-level" class="content-section">
+      <h2 class="section-heading">Foundation Level</h2>
+      <p class="section-paragraph">
+        The Foundation Level focuses on Mathematics, Statistics, Basics of Programming, 
+        and English. After completing all 8 Foundation Level courses successfully, 
+        students can either exit with a Foundational Certificate from IITM CODE 
+        or proceed to the Diploma Level.
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>Mathematics for Data Science I &amp; II</li>
+        <li>Statistics for Data Science I &amp; II</li>
+        <li>Computational Thinking</li>
+        <li>Programming in Python</li>
+        <li>English I &amp; II</li>
+      </ul>
+      <p class="section-paragraph">
+        Students are evaluated through weekly assignments, quizzes, and end-term exams. 
+        A strong grasp of fundamentals is essential for moving ahead to higher levels.
+      </p>
+    </section>
+
+    <!-- Diploma Level -->
+    <section id="diploma-level" class="content-section">
+      <h2 class="section-heading">Diploma Level</h2>
+      <p class="section-paragraph">
+        The Diploma Level comprises two tracks:
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>Diploma in <strong>Programming</strong></li>
+        <li>Diploma in <strong>Data Science</strong></li>
+      </ul>
+      <p class="section-paragraph">
+        Each Diploma is 27 credits (6 courses + 2 projects + 1 skill enhancement course).
+        A learner can complete one or both Diplomas before moving on to the BSc or BS levels.
+        Alternatively, they can exit with a Diploma from IIT Madras in either Programming 
+        or Data Science or both.
+      </p>
+      <p class="font-semibold mt-4 mb-1">Courses for Diploma in Programming (27 credits):</p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>Database Management Systems</li>
+        <li>Programming, Data Structures &amp; Algorithms using Python</li>
+        <li>Modern Application Development I &amp; Project</li>
+        <li>Programming Concepts using Java</li>
+        <li>Modern Application Development II &amp; Project</li>
+        <li>System Commands</li>
+      </ul>
+      <p class="font-semibold mt-4 mb-1">Courses for Diploma in Data Science (27 credits):</p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>Machine Learning Foundations</li>
+        <li>Business Data Management &amp; Project</li>
+        <li>Machine Learning Techniques</li>
+        <li>Machine Learning Practice &amp; Project</li>
+        <li>Business Analytics</li>
+        <li>Tools in Data Science</li>
+      </ul>
+    </section>
+
+    <!-- BSc Degree Level -->
+    <section id="bsc-degree-level" class="content-section">
+      <h2 class="section-heading">BSc Degree Level</h2>
+      <p class="section-paragraph">
+        Once a learner completes all courses in the Foundation Level (32 credits) 
+        and the Diploma Level (54 credits), they may opt to pursue the 
+        <strong>BSc Degree</strong> (28 credits). This level includes advanced topics 
+        in Data Science and Programming, preparing the learner for industry or higher studies.
+      </p>
+      <p class="section-paragraph">
+        Upon completion of 114 total credits, you can either continue 
+        to the BS Degree level or exit with a BSc Degree in Programming and Data Science 
+        from IIT Madras.
+      </p>
+    </section>
+
+    <!-- BS Degree Level -->
+    <section id="bs-degree-level" class="content-section">
+      <h2 class="section-heading">BS Degree Level</h2>
+      <p class="section-paragraph">
+        The BS Degree level (28 additional credits, total of 142) builds on the BSc core, 
+        focusing on specialized and advanced subjects in Data Science and its applications. 
+        Successful completion of these credits awards the BS Degree in Data Science and 
+        Applications from IIT Madras.
+      </p>
+      <p class="section-paragraph">
+        This comprehensive four-year degree is designed to provide ample knowledge 
+        and hands-on experience in domains of Programming, Data Science, Artificial Intelligence, 
+        and more, equipping students with career-ready skills.
+      </p>
+    </section>
+
+    <!-- Degree Level Courses -->
+    <section id="degree-level-courses" class="content-section">
+      <h2 class="section-heading">Degree Level Courses</h2>
+      <p class="section-paragraph">
+        At the BSc and BS Levels, a variety of core and elective courses are offered, 
+        including:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ul class="list-disc list-inside bg-white p-4 rounded-xl shadow text-gray-800">
+          <li class="font-bold mb-1">Core Courses:</li>
+          <li>Software Engineering</li>
+          <li>Software Testing</li>
+          <li>AI: Search Methods for Problem Solving</li>
+          <li>Deep Learning</li>
+          <li>Strategies for Professional Growth</li>
+        </ul>
+        <ul class="list-disc list-inside bg-white p-4 rounded-xl shadow text-gray-800">
+          <li class="font-bold mb-1">Elective Highlights:</li>
+          <li>Big Data and Biological Networks</li>
+          <li>Advanced Algorithms</li>
+          <li>Linear Statistical Models</li>
+          <li>Large Language Models</li>
+          <li>Privacy &amp; Security in Online Social Media</li>
+          <li>...and many more</li>
+        </ul>
+      </div>
+      <p class="section-paragraph">
+        Students can tailor their studies by choosing electives that match their interests 
+        and career goals. Many courses offer project-based learning for hands-on skill development.
+      </p>
+    </section>
+
+    <!-- Sample Certificates -->
+    <section id="sample-certificates" class="content-section">
+      <h2 class="section-heading">Sample Certificates</h2>
+      <p class="section-paragraph">
+        Students who successfully complete each stage can exit with industry-recognized credentials. 
+        Below are sample certificates that are awarded at different exit points (click to enlarge):
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <!-- BS in Data Science -->
+        <div class="text-center">
+          <a 
+            href="https://study.iitm.ac.in/ds/assets/img/academics/cert_5_low.jpg" 
+            target="_blank"
+            class="block transform transition hover:scale-105"
+          >
+            <img 
+              src="https://study.iitm.ac.in/ds/assets/img/academics/cert_5_low.jpg"
+              alt="BS in Data Science and Applications"
+              class="certificate-img mx-auto"
+              style="max-width: 150px;"
+            />
+          </a>
+          <p class="mt-2 text-sm font-semibold">
+            BS in Data Science and Applications
+          </p>
+        </div>
+        <!-- BSc in Programming and Data Science -->
+        <div class="text-center">
+          <a 
+            href="https://study.iitm.ac.in/ds/assets/img/academics/cert_1_low.jpg" 
+            target="_blank"
+            class="block transform transition hover:scale-105"
+          >
+            <img 
+              src="https://study.iitm.ac.in/ds/assets/img/academics/cert_1_low.jpg"
+              alt="BSc in Programming and Data Science"
+              class="certificate-img mx-auto"
+              style="max-width: 150px;"
+            />
+          </a>
+          <p class="mt-2 text-sm font-semibold">
+            BSc in Programming and Data Science
+          </p>
+        </div>
+        <!-- Diploma in Programming -->
+        <div class="text-center">
+          <a 
+            href="https://study.iitm.ac.in/ds/assets/img/academics/cert_2_low.jpg" 
+            target="_blank"
+            class="block transform transition hover:scale-105"
+          >
+            <img 
+              src="https://study.iitm.ac.in/ds/assets/img/academics/cert_2_low.jpg"
+              alt="Diploma in Programming"
+              class="certificate-img mx-auto"
+              style="max-width: 150px;"
+            />
+          </a>
+          <p class="mt-2 text-sm font-semibold">
+            Diploma in Programming
+          </p>
+        </div>
+        <!-- Diploma in Data Science -->
+        <div class="text-center">
+          <a 
+            href="https://study.iitm.ac.in/ds/assets/img/academics/cert_3_low.jpg"
+            target="_blank"
+            class="block transform transition hover:scale-105"
+          >
+            <img 
+              src="https://study.iitm.ac.in/ds/assets/img/academics/cert_3_low.jpg"
+              alt="Diploma in Data Science"
+              class="certificate-img mx-auto"
+              style="max-width: 150px;"
+            />
+          </a>
+          <p class="mt-2 text-sm font-semibold">
+            Diploma in Data Science
+          </p>
+        </div>
+        <!-- Foundational Certificate -->
+        <div class="text-center">
+          <a 
+            href="https://study.iitm.ac.in/ds/assets/img/academics/cert_4_low.jpg"
+            target="_blank"
+            class="block transform transition hover:scale-105"
+          >
+            <img 
+              src="https://study.iitm.ac.in/ds/assets/img/academics/cert_4_low.jpg"
+              alt="Foundational Certificate"
+              class="certificate-img mx-auto"
+              style="max-width: 150px;"
+            />
+          </a>
+          <p class="mt-2 text-sm font-semibold">
+            Foundational Certificate
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-10 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+            >support@study.iitm.ac.in</a
+          >
+          |
+          Phone:
+          <span class="text-gray-200">7850-999966</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding 
+          the program. Our normal response time is 3 working days; it might take
+          a little longer during busy periods. We will share Google Meet links
+          during such periods. Due to the high volume of calls we receive every
+          day, there might be long wait times. In some cases, you might have to
+          call multiple times to successfully connect to us.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIMPLE JS FOR DROPDOWNS & SMOOTH SCROLL ADJUSTMENT -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // close others
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (menu !== dropdown) {
+          menu.style.display = 'none';
+        }
+      });
+      // toggle current
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(e) {
+      // If click was not on a dropdown button or inside the dropdown
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

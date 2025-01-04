@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras - BS in Electronic Systems | About IITM</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #ffffff; /* Keep white for overall page background */
+    }
+
+    /* HEADER & FOOTER BACKGROUND (Dark Teal / Blue) */
+    .brand-header {
+      background-color: #009AB2; 
+    }
+    .brand-footer {
+      background-color: #003f4f;
+    }
+
+    /* ANNOUNCEMENT MARQUEE */
+    .announcement-marquee {
+      background: #003f4f;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0%   { transform: translateX(100%); }
+      25%  { transform: translateX(0%); }
+      75%  { transform: translateX(-100%); }
+      100% { transform: translateX(-200%); }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 154, 178, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 154, 178, 0.5);
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(100, 116, 139, 1),
+        rgba(51, 65, 85, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(51, 65, 85, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(51, 65, 85, 1),
+        rgba(100, 116, 139, 1)
+      );
+    }
+
+    /* NAV DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: #009AB2;
+      min-width: 12rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.2s ease;
+    }
+    .dropdown-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* PAGE SECTIONS */
+    section[id] {
+      scroll-margin-top: 6rem; /* so headings not hidden behind sticky top */
+    }
+    .content-section {
+      background-color: #f0fcff;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-section:hover {
+      background-color: #ebf8fa; 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .section-heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #009AB2;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Faculty Images -> Circular */
+    .faculty-img {
+      border-radius: 9999px; /* circular shape */
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+
+    @media (max-width: 640px) {
+      nav a {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .dropdown-menu {
+        min-width: 10rem;
+      }
+      .faculty-img {
+        margin-bottom: 1rem;
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="brand-header text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeES.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with dropdowns -->
+      <nav class="flex items-center space-x-4 text-lg font-medium relative">
+        
+        <!-- Academics Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div
+            id="academicsDropdown"
+            class="dropdown-menu"
+          >
+            <a href="academicsES.html">Overall Structure</a>
+            <a href="academicsES.html#course-registrations">Course Registrations</a>
+            <a href="academicsES.html#assessments">Assessments</a>
+            <a href="academicsES.html#exam-cities">Exam Cities</a>
+            <a href="academicsES.html#fee-structure">Fee Structure</a>
+            <a href="academicsES.html#foundation-level">Foundation Level</a>
+            <a href="academicsES.html#diploma-level">Diploma Level</a>
+            <a href="academicsES.html#bs-degree-level">BS Degree Level</a>
+            <a href="academicsES.html#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div
+            id="admissionsDropdown"
+            class="dropdown-menu"
+          >
+            <a href="admissionsES.html#important-dates">Important Dates</a>
+            <a href="admissionsES.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsES.html#eligibility-to-apply">Eligibility to Apply</a>
+            <a href="admissionsES.html#application-process">Application Process</a>
+            <a href="admissionsES.html#admission-foundation-level">Admission to Foundation Level</a>
+            <a href="admissionsES.html#regular-entry">Regular Entry</a>
+            <a href="admissionsES.html#jee-based-entry">JEE-based Entry</a>
+            <a href="admissionsES.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div
+            id="studentLifeDropdown"
+            class="dropdown-menu"
+          >
+            <a href="studentlifeES.html">Student Life</a>
+            <a
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home"
+              target="_blank"
+            >
+              PARADOX / Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div
+            id="aboutIITMDropdown"
+            class="dropdown-menu"
+          >
+            <a href="aboutIITMES.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMES.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMES.html#contact-us">Contact Us</a>
+            <!-- Merchandise link to open new tab: https://podgoodies.iitmadrasonline.in/ -->
+            <a 
+              href="https://podgoodies.iitmadrasonline.in/" 
+              target="_blank"
+            >
+              Merchandise
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinES.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch | Applications Close: January 02, 2025 | Exam: February 23, 2025 
+      &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10 space-y-12 text-gray-800">
+
+    <!-- About IIT Madras -->
+    <section id="about-iitm" class="content-section">
+      <h2 class="section-heading">About IIT Madras</h2>
+      <p class="section-paragraph">
+        Indian Institute of Technology Madras is one of the foremost institutes of 
+        national importance for higher technical education and research.
+      </p>
+      <p class="section-paragraph">
+        In 1956, the German Government offered technical assistance in establishing 
+        an institute of higher education in engineering in India. The first Indo-German 
+        agreement in Bonn, West Germany for the establishment of the Indian Institute of 
+        Technology at Madras was signed in 1959.
+      </p>
+      <p class="section-paragraph">
+        The Institute was formally inaugurated in 1959 by Prof. Humayun Kabir, 
+        Union Minister for Scientific Research and Cultural Affairs. The IIT system has 
+        twenty three Institutes of Technology. The first of these to be instituted are 
+        at Kharagpur (estb. 1951), Mumbai (estb. 1958), Chennai (estb. 1959), 
+        Kanpur (estb. 1959), Delhi (estb. 1961), Guwahati (estb. 1994) and Roorkee 
+        (estb. 1847, joined IITs in 2001).
+      </p>
+      <p class="section-paragraph">
+        The Institute has sixteen academic departments and several advanced research centres 
+        in various disciplines of engineering and pure sciences. A faculty of international repute, 
+        a brilliant student community, excellent technical &amp; supporting staff, and an effective administration 
+        have all contributed to the pre-eminent status of IIT Madras. 
+        The campus is located in the city of Chennai, previously known as Madras, which is the state capital of 
+        Tamil Nadu in southern India.
+      </p>
+      <p class="section-paragraph">
+        We have been ranked number 1 Engineering Institute for the past 6 years and 
+        have been ranked number 1 Overall for the past 2 years by NIRF.
+      </p>
+    </section>
+
+    <!-- IITM's Experience in Online Education -->
+    <section id="iitm-experience" class="content-section">
+      <h2 class="section-heading">IITM’s Experience in Online Education</h2>
+      <p class="section-paragraph">
+        IITM is well-equipped to provide online programs, which has been proven 
+        with its experience in the NPTEL and BS in Data Science programs.
+      </p>
+
+      <h3 class="font-bold text-lg mt-4 mb-2">
+        National Program on Technology Enhanced Learning (NPTEL)
+      </h3>
+      <p class="section-paragraph">
+        IITM began the NPTEL program, the country’s first online content portal, 
+        as an inter-IIT consortium project in 2003. 
+        <strong>nptel.ac.in</strong> is one of the largest online course repositories 
+        in the world for engineering content. In 2014, NPTEL started offering courses 
+        for certification and currently more than 1300 courses are offered annually, 
+        with over 4 million enrollments and 800,000+ students registering for exams each year.
+      </p>
+      <p class="section-paragraph">
+        NPTEL also manages the national MOOCs portal <strong>swayam.gov.in</strong> 
+        as well as the network of more than 5300 SWAYAM local chapter colleges across India.
+      </p>
+
+      <h3 class="font-bold text-lg mt-4 mb-2">
+        IIT Madras’ BS in Data Science and Applications
+      </h3>
+      <p class="section-paragraph">
+        Based on the experience gained from NPTEL, IIT Madras launched a 4-year BS Degree program 
+        in Data Science and Applications (<strong>study.iitm.ac.in/ds</strong>). 
+        This program features a non-JEE qualifier-based entry, open to learners from all streams 
+        and backgrounds, requiring nothing more than Class 10 English &amp; Math and completion of Class 12. 
+        Now in its third year, the Data Science program has over 16,000 students.
+      </p>
+      <p class="section-paragraph">
+        Students in the program can choose their pace, selecting how many courses they register for each term. 
+        Multiple exit options are available: Foundation-level Certificate, Diploma in Programming, 
+        Diploma in Data Science, BSc in Programming &amp; Data Science, and finally the full 4-year BS Degree. 
+        Many students benefit from the interactive structure, group activities, houses, and 
+        the annual on-campus festival called <em>Paradox</em>. Several are already pursuing internships 
+        and have been recruited by companies. 
+        Building on this success, the team has designed and launched the second BS degree, 
+        in Electronic Systems.
+      </p>
+    </section>
+
+    <!-- Relevant Links -->
+    <section id="relevant-links" class="content-section">
+      <h2 class="section-heading">Relevant Links</h2>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          <a href="https://www.iitm.ac.in" target="_blank" class="underline text-blue-600">
+            www.iitm.ac.in
+          </a>
+        </li>
+        <li>
+          <a href="#" class="underline text-blue-600">
+            /ReachIITM
+          </a>
+        </li>
+        <li>
+          <a href="#" class="underline text-blue-600">
+            /ReachIITM
+          </a>
+        </li>
+        <li>
+          <a href="#" class="underline text-blue-600">
+            /iitmadras
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Faculty Coordinators (for BS in Electronic Systems) -->
+    <section id="faculty-coordinators" class="content-section">
+      <h2 class="section-heading">Faculty Co-ordinators</h2>
+      <p class="section-paragraph font-bold">BS in Electronic Systems</p>
+
+      <!-- Dr Sankaran Aniruddhan -->
+      <div class="flex flex-col md:flex-row items-start mb-6">
+        <img
+          src="https://study.iitm.ac.in/es/assets/img/aboutIITM/Sankaran.jpg"
+          alt="Dr Sankaran Aniruddhan"
+          class="faculty-img mb-3 md:mb-0"
+        />
+        <div>
+          <h3 class="font-semibold text-lg">Dr Sankaran Aniruddhan</h3>
+          <p class="text-gray-700 text-sm mt-2">
+            Dr Sankaran Aniruddhan is an Associate Professor in the VLSI group 
+            of the Department of Electrical Engineering at IIT Madras. 
+            He earned his B. Tech. in Electrical Engineering from IIT Madras (2000) 
+            and a Ph.D. from the University of Washington, Seattle (2006).
+          </p>
+          <p class="text-gray-700 text-sm mt-2">
+            Between 2006 and 2011, he worked in the RF-Analog group at Qualcomm Inc., 
+            San Diego, where he designed integrated circuits for Cellular RF applications. 
+            His research primarily focuses on CMOS RF Integrated Circuits for Wireless Communications.
+          </p>
+          <a 
+            href="https://www.ee.iitm.ac.in/" 
+            target="_blank"
+            class="mt-2 inline-block underline text-blue-600 text-sm"
+          >
+            Visit website
+          </a>
+        </div>
+      </div>
+
+      <!-- Dr Boby George -->
+      <div class="flex flex-col md:flex-row items-start">
+        <img
+          src="https://study.iitm.ac.in/es/assets/img/aboutIITM/Boby.jpg"
+          alt="Dr Boby George"
+          class="faculty-img mb-3 md:mb-0"
+        />
+        <div>
+          <h3 class="font-semibold text-lg">Dr Boby George</h3>
+          <p class="text-gray-700 text-sm mt-2">
+            Dr Boby George received the M. Tech. and Ph. D. degrees 
+            in Electrical Engineering from IIT Madras. He is a Professor 
+            in the Department of Electrical Engineering at IIT Madras. 
+            His research areas include Sensor Interface Electronics, 
+            Electric and Magnetic field-based Sensors, Water Quality 
+            &amp; Quantity Monitoring, and Biomedical Instrumentation.
+          </p>
+          <p class="text-gray-700 text-sm mt-2">
+            He serves as an Associate Editor for IEEE Sensors Journal, 
+            IEEE Transactions on Instrumentation and Measurement, 
+            and IEEE Transactions on Industrial Electronics.
+          </p>
+          <a 
+            href="https://www.ee.iitm.ac.in/" 
+            target="_blank"
+            class="mt-2 inline-block underline text-blue-600 text-sm"
+          >
+            Visit website
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer text-white py-10">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+          >
+            support@study.iitm.ac.in
+          </a>
+          |
+          Phone:
+          <span class="text-gray-200">1234-567890</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding
+          the program. Response time is 3 working days; it may be longer
+          during busy periods.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Dropdown -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // Close any other open dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(dm => {
+        if (dm !== dropdown) {
+          dm.style.display = 'none';
+        }
+      });
+      // Toggle the current dropdown
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicking outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(dm => {
+          dm.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

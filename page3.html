@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revamped Diploma Page - IIT Madras</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter font (optional) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* 
+      Brand color: #2A3C88
+      Some possible variants:
+        - Darker: #1C2A5C
+        - Medium: #3C4E9C
+        - Lighter tinted background: #E6E8F5
+    */
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #fff; /* We'll generally use white text on colored backgrounds */
+      background-color: #2A3C88; /* Keep the entire page in brand color with variations */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* HEADER & FOOTER */
+    .brand-header {
+      background-color: #2A3C88;
+    }
+    .brand-footer {
+      background-color: #1C2A5C;
+    }
+
+    /* MAIN CONTENT AREA */
+    .content-area {
+      background-color: #3C4E9C; /* A mid-tone shade derived from #2A3C88 */
+    }
+
+    /* HERO SECTION with a dark overlay */
+    .hero-section {
+      background:
+        linear-gradient(
+          rgba(28, 42, 92, 0.85),
+          rgba(28, 42, 92, 0.85)
+        ),
+        url('https://via.placeholder.com/1600x600?text=IIT+Madras+Diploma+Hero+Image');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(2px);
+    }
+
+    /* BRAND BUTTONS */
+    .brand-btn {
+      background: #FFC466; 
+      color: #2A3C88;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .brand-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,196,102,0.5);
+    }
+
+    /* ALTERNATE BUTTON (white fill) */
+    .brand-btn-alt {
+      background-color: #fff;
+      color: #2A3C88;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .brand-btn-alt:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.25);
+    }
+
+    /* CARD STYLES */
+    .info-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: rgba(255, 255, 255, 0.15); /* slight transparency */
+      backdrop-filter: blur(3px);
+      border-radius: 0.75rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .info-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="brand-header w-full py-4 px-6 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo / Title -->
+      <div class="flex items-center space-x-3 cursor-pointer">
+        <img 
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-10 h-10"
+        />
+        <h1 class="text-xl font-extrabold">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav / Right side (NO DROPDOWNS) -->
+      <nav class="hidden md:flex space-x-6">
+        <a 
+          href="academicsDiploma.html"
+          class="hover:underline font-medium"
+        >
+          Academics
+        </a>
+        <a 
+          href="admissionsDiploma.html"
+          class="hover:underline font-medium"
+        >
+          Admissions
+        </a>
+        <a 
+          href="aboutIITMDiploma.html"
+          class="hover:underline font-medium"
+        >
+          About IITM
+        </a>
+      </nav>
+      
+      <!-- Sign In button -->
+      <button 
+        class="brand-btn-alt hidden md:block"
+        onclick="location.href='signinDiploma.html'">
+        Sign In
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section relative text-white text-center py-16 md:py-24">
+    <div class="relative z-10 max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl md:text-5xl font-extrabold mb-4 drop-shadow-md">
+        Build a Career in <br class="md:hidden"/>Programming / Data Science 
+        <br/>
+        <span class="text-lg md:text-xl font-semibold block mt-2">
+          with a DIPLOMA from IIT Madras in ~8 months*
+        </span>
+      </h2>
+      <p class="mb-8 text-base md:text-lg">
+        Open to anyone who has completed at least 2 years of any UG program. 
+        Flexible, high-quality online learning with in-person assessments.
+      </p>
+      <!-- CTA button(s) -->
+      <button class="brand-btn">
+        Learn More
+      </button>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT AREA (Colored background) -->
+  <section class="content-area py-12 md:py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <!-- Program Highlights row -->
+      <div class="flex flex-col md:flex-row md:space-x-6 space-y-6 md:space-y-0 mb-12">
+        <div class="info-card flex-1 p-6">
+          <h3 class="text-xl font-bold mb-3">Eligibility</h3>
+          <p class="mb-4">Anyone interested with at least 2 years of any UG degree can apply. No age or location bar.</p>
+        </div>
+        <div class="info-card flex-1 p-6">
+          <h3 class="text-xl font-bold mb-3">Coursework</h3>
+          <p class="mb-4">8 theory courses plus 2 real-world projects; comprehensive hands-on training.</p>
+        </div>
+        <div class="info-card flex-1 p-6">
+          <h3 class="text-xl font-bold mb-3">Flexibility</h3>
+          <p class="mb-4">Learn at your own pace, anywhere in the world. Well-structured online modules & in-person labs.</p>
+        </div>
+      </div>
+
+      <!-- About the Program -->
+      <div class="mb-12">
+        <h2 class="text-2xl md:text-3xl font-extrabold mb-4">About the Program</h2>
+        <p class="leading-relaxed mb-4">
+          IIT Madras is offering Diplomas in Programming and Data Science for 
+          college students, working professionals, and job seekers who aim to build a 
+          career in these domains. Online learning combined with in-person assessments 
+          makes the program flexible and affordable, while retaining the exceptional 
+          quality of learning that IIT Madras stands for.
+        </p>
+        <ul class="list-disc list-inside pl-4 space-y-2">
+          <li>Diploma in Programming</li>
+          <li>Diploma in Data Science</li>
+        </ul>
+      </div>
+
+      <!-- Diplomas Offered -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+        <!-- Diploma in Programming -->
+        <div class="info-card p-6">
+          <h3 class="text-xl font-bold mb-2">Diploma in Programming</h3>
+          <p class="mb-2">Courses: 8 theory + 2 projects</p>
+          <p class="mb-2">Duration: ~8 months*</p>
+          <p class="mb-4">Fee: ₹70,500 (EMI options available)</p>
+          <a href="#"
+             class="inline-block brand-btn-alt text-xs font-semibold mt-2"
+             >View list of courses</a>
+        </div>
+
+        <!-- Diploma in Data Science -->
+        <div class="info-card p-6">
+          <h3 class="text-xl font-bold mb-2">Diploma in Data Science</h3>
+          <p class="mb-2">Courses: 8 theory + 2 projects</p>
+          <p class="mb-2">Duration: ~8 months*</p>
+          <p class="mb-4">Fee: ₹70,500 (EMI options available)</p>
+          <a href="#"
+             class="inline-block brand-btn-alt text-xs font-semibold mt-2"
+             >View list of courses</a>
+        </div>
+      </div>
+
+      <!-- Sample Certificate / Image placeholder -->
+      <div class="mt-10 flex justify-center">
+        <img
+          src="https://via.placeholder.com/600x200?text=Sample+Diploma+Certificates"
+          alt="Sample Diplomas"
+          class="rounded-md shadow-md"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer py-8">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h3 class="text-lg font-semibold mb-2">Contact Us</h3>
+      <p class="text-sm">
+        IITM BS Degree Office, 3rd Floor, ICSR Building, <br/>
+        IIT Madras, Chennai - 600036
+      </p>
+      <p class="text-sm mt-3 mx-auto max-w-2xl leading-relaxed">
+        For any queries, please reach out to us through one of the following modes: 
+        Email: <a href="mailto:support-diploma@study.iitm.ac.in"
+                  class="underline hover:text-gray-200">
+                  support-diploma@study.iitm.ac.in
+                </a>
+        <br/>
+        Our normal response time is 3 working days; it might be longer during busy periods.
+      </p>
+      <!-- Social Icons -->
+      <div class="flex space-x-4 justify-center mt-6">
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook.png"
+            alt="Facebook"
+          />
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/twitter.png"
+            alt="Twitter"
+          />
+        </a>
+        <a href="#" class="hover:opacity-80">
+          <img
+            src="https://img.icons8.com/ios-glyphs/30/ffffff/linkedin.png"
+            alt="LinkedIn"
+          />
+        </a>
+      </div>
+      <!-- Footer links -->
+      <div class="text-sm mt-4 space-x-2">
+        <a href="#" class="hover:text-gray-300">Privacy Policy</a>|
+        <a href="#" class="hover:text-gray-300">Terms of Service</a>
+      </div>
+      <p class="text-sm mt-2">&copy; IIT Madras. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

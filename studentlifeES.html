@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras - BS in Electronic Systems | Student Life</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #ffffff; /* Keep white for overall page background */
+    }
+
+    /* HEADER & FOOTER BACKGROUND (Dark Teal / Blue) */
+    .brand-header {
+      background-color: #009AB2; 
+    }
+    .brand-footer {
+      background-color: #003f4f;
+    }
+
+    /* ANNOUNCEMENT MARQUEE */
+    .announcement-marquee {
+      background: #003f4f;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0%   { transform: translateX(100%); }
+      25%  { transform: translateX(0%); }
+      75%  { transform: translateX(-100%); }
+      100% { transform: translateX(-200%); }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 154, 178, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 154, 178, 0.5);
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(100, 116, 139, 1),
+        rgba(51, 65, 85, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(51, 65, 85, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(51, 65, 85, 1),
+        rgba(100, 116, 139, 1)
+      );
+    }
+
+    /* NAV DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: #009AB2;
+      min-width: 12rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.2s ease;
+    }
+    .dropdown-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* PAGE SECTIONS */
+    section[id] {
+      scroll-margin-top: 6rem; /* so headings not hidden behind sticky top */
+    }
+    .content-section {
+      background-color: #f0fcff;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-section:hover {
+      background-color: #ebf8fa; 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .section-heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #009AB2;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .list-disc.list-inside li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* TABLES */
+    .custom-table {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    /* Additional styling for any hover or container */
+    .hoverable-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
+      nav a {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .dropdown-menu {
+        min-width: 10rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="brand-header text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeES.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with dropdowns -->
+      <nav class="flex items-center space-x-4 text-lg font-medium relative">
+        
+        <!-- Academics Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div
+            id="academicsDropdown"
+            class="dropdown-menu"
+          >
+            <a href="academicsES.html">Overall Structure</a>
+            <a href="academicsES.html#course-registrations">Course Registrations</a>
+            <a href="academicsES.html#assessments">Assessments</a>
+            <a href="academicsES.html#exam-cities">Exam Cities</a>
+            <a href="academicsES.html#fee-structure">Fee Structure</a>
+            <a href="academicsES.html#foundation-level">Foundation Level</a>
+            <a href="academicsES.html#diploma-level">Diploma Level</a>
+            <a href="academicsES.html#bs-degree-level">BS Degree Level</a>
+            <a href="academicsES.html#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div
+            id="admissionsDropdown"
+            class="dropdown-menu"
+          >
+            <a href="admissionsES.html#important-dates">Important Dates</a>
+            <a href="admissionsES.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsES.html#eligibility-to-apply">Eligibility to Apply</a>
+            <a href="admissionsES.html#application-process">Application Process</a>
+            <a href="admissionsES.html#admission-foundation-level">Admission to Foundation Level</a>
+            <a href="admissionsES.html#regular-entry">Regular Entry</a>
+            <a href="admissionsES.html#jee-based-entry">JEE-based Entry</a>
+            <a href="admissionsES.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div
+            id="studentLifeDropdown"
+            class="dropdown-menu"
+          >
+            <!-- This page itself -->
+            <a href="studentlifeES.html">Student Life</a>
+            <a
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home"
+              target="_blank"
+            >
+              PARADOX / Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div
+            id="aboutIITMDropdown"
+            class="dropdown-menu"
+          >
+            <a href="aboutIITMES.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMES.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMES.html#contact-us">Contact Us</a>
+            <a 
+              href="https://podgoodies.iitmadrasonline.in/" 
+              target="_blank"
+            >Merchandise</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinES.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open now for January 2025 Batch | Applications Close: January 02, 2025 | Exam: February 23, 2025 
+      &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section 
+    class="text-white text-center py-16 md:py-20 relative overflow-hidden"
+    style="
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 63, 79, 0.5),
+          rgba(0, 63, 79, 0.5)
+        ),
+        url('https://study.iitm.ac.in/es/assets/img/studentlife/StudentLifeImage.jpg');
+      background-size: cover;
+      background-position: center;
+    "
+  >
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-4 drop-shadow-lg">
+        STUDENT HOUSES &amp; SOCIETIES
+      </h2>
+      <p class="max-w-2xl mx-auto text-md md:text-lg">
+        Get empowered, be part of our virtual campus, build real communities, 
+        and become future leaders.
+      </p>
+      <p class="max-w-3xl mx-auto text-md md:text-lg mt-4">
+        Here in the IITM BS in Electronic Systems degree, students, faculty, 
+        and staff work together to support students and help them 
+        make the most of their opportunities.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10 space-y-12 text-gray-800">
+    <!-- Student Houses -->
+    <section id="student-houses" class="content-section">
+      <h2 class="section-heading">Student Houses</h2>
+      <p class="section-paragraph">
+        All students in the program will be divided into 
+        <strong>12 houses named after forests in India.</strong> 
+        Your house is where you seek, share, support, and study together—
+        and do what you love through clubs and activities.
+      </p>
+      <p class="section-paragraph">
+        We invite the student community to feel at home in their forest houses:
+        Bandipur, Corbett, Gir, Kanha, Kaziranga, Nallamala, Namdapha, Nilgiri, 
+        Pichavaram, Saranda, Sundarbans, and Wayanad.
+      </p>
+      <p class="section-paragraph">
+        Each house accommodates nearly 30 groups of around 20 students each, 
+        where group members are often from the same or neighbouring cities. 
+        House members are from across the country, fostering diversity and community spirit.
+      </p>
+
+      <h3 class="font-bold text-teal-700 mt-4 mb-2">
+        Upper House Council &amp; Elections
+      </h3>
+      <p class="section-paragraph">
+        Secretaries and Deputy Secretaries of all 12 houses form the 
+        <em>Upper House Council</em> that governs the houses. 
+        The Student Elections Committee, constituted by Student Affairs, 
+        conducts free and fair elections every August. Each house elects 
+        its Secretary and Deputy Secretary for a one-year term.
+      </p>
+      <p class="section-paragraph">
+        The house Secretary, in turn, conducts group-level elections, 
+        where group members elect their own Group Leader. 
+        All Secretaries and Group leaders are typically below 25 years of age.
+      </p>
+    </section>
+
+    <!-- Our Twelve Houses -->
+    <section class="content-section">
+      <h2 class="section-heading">Our Twelve Houses</h2>
+      <p class="section-paragraph">
+        Each house has its own “virtual space” for announcements, events, 
+        clubs, and study discussions. You can explore below:
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 text-center">
+        <!-- 12 Houses as clickable cards with IITM logo -->
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Bandipur</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Corbett</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Gir</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Kanha</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Kaziranga</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Nallamala</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Namdapha</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Nilgiri</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Pichavaram</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Saranda</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Sundarbans</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+        <div class="bg-white p-3 rounded shadow hover:shadow-lg transition">
+          <img 
+            src="https://ds.study.iitm.ac.in/static/img/logo.png" 
+            alt="House Logo"
+            class="mx-auto mb-2 w-12 h-12"
+          />
+          <p class="font-semibold mb-1">Wayanad</p>
+          <a href="#" class="underline text-blue-600 text-sm">
+            Go to Website
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Societies/Clubs -->
+    <section class="content-section">
+      <h2 class="section-heading">Our Societies</h2>
+      <p class="section-paragraph">
+        A variety of student-run clubs and societies allow you to explore 
+        and join what you’re passionate about. Below is a sample list:
+      </p>
+      <div class="overflow-x-auto bg-white rounded shadow mt-4">
+        <table class="min-w-full text-left text-gray-700">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="py-3 px-4">Society / Club</th>
+              <th class="py-3 px-4">Link / Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-3 px-4">1. Aayam : IITM BS Drama Society</td>
+              <td class="py-3 px-4">
+                <strong>Social Media Link</strong> &nbsp; 
+                <a href="mailto:drama.society@study.iitm.ac.in" class="underline text-blue-600">
+                  drama.society@study.iitm.ac.in
+                </a>
+              </td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">2. Adhyay : The Civil Services Society IIT Madras BS</td>
+              <td class="py-3 px-4">
+                <strong>Social Media Link</strong> &nbsp; 
+                <a href="mailto:civilservices.society@study.iitm.ac.in" class="underline text-blue-600">
+                  civilservices.society@study.iitm.ac.in
+                </a>
+              </td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">3. AKRO Music Society</td>
+              <td class="py-3 px-4">
+                <strong>Social Media Link</strong> &nbsp; 
+                <a href="mailto:music.society@study.iitm.ac.in" class="underline text-blue-600">
+                  music.society@study.iitm.ac.in
+                </a>
+              </td>
+            </tr>
+            <!-- Add additional societies/clubs as needed -->
+            <tr>
+              <td class="py-3 px-4">... additional clubs ...</td>
+              <td class="py-3 px-4">(... other links ...)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Goals & Initiatives -->
+    <section class="content-section">
+      <h2 class="section-heading">Our Goals &amp; Initiatives</h2>
+      <p class="section-paragraph">
+        We strive to create an inclusive, supportive, and dynamic ecosystem 
+        that nurtures student growth—both academically and personally. 
+        Here are some of our focus areas:
+      </p>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- 1. Leadership -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We nurture Leadership &amp; Organizational skills
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Students gain invaluable skills and hands-on experience throughout their BS program.</li>
+            <li>Opportunities to lead events, clubs, houses, and study groups are provided.</li>
+            <li>We encourage collaboration, team-based projects, and initiative-taking.</li>
+          </ul>
+        </div>
+        <!-- 2. Enrich experiences -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We enrich your experiences
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>
+              From cultural clubs to technical hobby groups, 
+              there's room to explore and innovate beyond academics.
+            </li>
+            <li>
+              Students can propose and start new clubs that cater to unique interests, 
+              supported by the student community.
+            </li>
+            <li>
+              Social events, fests, workshops, and competitions further enhance 
+              learning and fun.
+            </li>
+          </ul>
+        </div>
+        <!-- 3. We promote equity -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We promote equity
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>
+              Gender, socio-economic status, or any other factor will never be a barrier.
+            </li>
+            <li>
+              Diversity training and cultural sensitization sessions are regularly conducted.
+            </li>
+            <li>
+              We support clubs &amp; events that advocate for inclusion, fairness, and social change.
+            </li>
+          </ul>
+        </div>
+        <!-- 4. We care for your wellbeing -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We care for your wellbeing
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>
+              Balancing remote study, personal life, and work can be challenging— 
+              our support ecosystem stands ready to help.
+            </li>
+            <li>
+              Access to IITM's Wellness Community Center for counseling and professional guidance.
+            </li>
+            <li>
+              Your mental and emotional well-being is our priority; 
+              reach out if you need someone to talk to.
+            </li>
+          </ul>
+        </div>
+        <!-- 5. Grievance redressal -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We redress your grievances
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>
+              Any complaints (e.g., bullying, harassment) are taken seriously by 
+              the IITM BS team.
+            </li>
+            <li>
+              You may raise complaints about staff or fellow students’ behavior 
+              for resolution.
+            </li>
+            <li>
+              Email: 
+              <a 
+                href="mailto:students-grievance@study.iitm.ac.in"
+                class="underline text-blue-600"
+              >
+                students-grievance@study.iitm.ac.in
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- 6. We Hear You -->
+        <div class="bg-white p-4 rounded shadow hoverable-card transition">
+          <h3 class="text-lg font-bold text-teal-700 mb-2">
+            We hear you
+          </h3>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>
+              Our student community is diverse, vibrant, and constantly evolving. 
+              We value your feedback and ideas for improvement.
+            </li>
+            <li>
+              Have suggestions to shape or modify policies? 
+              <a 
+                href="mailto:student-affairs@study.iitm.ac.in"
+                class="underline text-blue-600"
+              >
+                student-affairs@study.iitm.ac.in
+              </a>
+            </li>
+            <li>
+              Join us in building a supportive and forward-looking campus environment.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer text-white py-10">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+          >
+            support@study.iitm.ac.in
+          </a>
+          |
+          Phone:
+          <span class="text-gray-200">1234-567890</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding
+          the program. Response time is 3 working days; it may be longer
+          during busy periods.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Dropdown -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // Close any other open dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(dm => {
+        if (dm !== dropdown) dm.style.display = 'none';
+      });
+      // Toggle the current dropdown
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicking outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(dm => {
+          dm.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

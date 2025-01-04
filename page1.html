@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras BS Program - Redesigned Homepage</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    /* HERO BACKGROUND */
+    .hero-bg {
+      background: 
+        linear-gradient(
+          90deg,
+          rgba(239, 68, 68, 0.85),
+          rgba(245, 158, 11, 0.85)
+        ),
+        url('https://www.iitm.ac.in/sites/default/files/styles/banner_large/public/2019-12/Main%20Building.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(2px);
+    }
+
+    /* MARQUEE (Announcement) */
+    .announcement-marquee {
+      background: #8b0000;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      25% {
+        transform: translateX(0%);
+      }
+      75% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(-200%);
+      }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(128, 128, 128, 1),
+        rgba(50, 50, 50, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(128, 128, 128, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(50, 50, 50, 1),
+        rgba(128, 128, 128, 1)
+      );
+    }
+
+    /* CARDS */
+    .metric-card,
+    .info-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .metric-card:hover,
+    .info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    /* VIDEO CONTAINER (SMALLER) */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- HEADER -->
+  <header class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <!-- Linked to homeDS.html on click (changed bome.html to homeDS.html) -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeDS.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+      <!-- Nav Links (Corrected) -->
+      <nav class="flex space-x-4 text-lg font-medium">
+        <a
+          href="academicsDS.html#overall-structure"
+          class="hover:text-yellow-400 transition-colors"
+        >
+          Academics
+        </a>
+        <a
+          href="admissionsDS.html#important-dates"
+          class="hover:text-yellow-400 transition-colors"
+        >
+          Admissions
+        </a>
+        <a
+          href="studentlifeDS.html#student-houses"
+          class="hover:text-yellow-400 transition-colors"
+        >
+          Student Life
+        </a>
+        <a
+          href="aboutIITMDS.html#about-iitm"
+          class="hover:text-yellow-400 transition-colors"
+        >
+          About IITM
+        </a>
+        <a
+          href="partnershipsDS.html"
+          class="hover:text-yellow-400 transition-colors"
+        >
+          Partnerships
+        </a>
+      </nav>
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinDS.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE (Reduced size) -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section
+    class="hero-bg text-white text-center py-16 md:py-24 relative overflow-hidden"
+  >
+    <div class="container mx-auto relative z-10 px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
+        IIT Madras, India's Top Technical Institute
+      </h2>
+      <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
+        Welcomes you to the world's first 4-year Bachelor of Science (BS) Degree
+        in Data Science and Applications—with options to exit earlier in the
+        foundation, diploma, or BSc degree level.
+      </p>
+
+      <p class="text-md md:text-lg max-w-2xl mx-auto mb-6">
+        For the first time, you can work towards an undergraduate degree or
+        diploma from an IIT regardless of your age, location, or academic
+        background. More than <strong>29,000</strong> students currently study
+        with us in this program.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div
+        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4"
+      >
+        <a
+          href="#"
+          class="futuristic-btn font-bold text-md tracking-wider"
+        >
+          More Details
+        </a>
+        <a
+          href="#"
+          class="futuristic-btn font-bold text-md tracking-wider"
+        >
+          Fee Structure
+        </a>
+      </div>
+
+      <!-- Smaller video box -->
+      <div class="max-w-md mx-auto mt-8 shadow-lg">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/lEMtlAqlJww"
+            title="IIT Madras BS Program Video"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRIC STATS -->
+  <section class="bg-white py-12">
+    <div
+      class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6"
+    >
+      <div
+        class="metric-card rounded-lg p-6 text-center bg-red-100 border-b-4 border-red-500"
+      >
+        <h3 class="text-3xl font-extrabold text-red-700">20,000+</h3>
+        <p class="text-gray-700 mt-2">
+          Students doing this program along with another degree
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center bg-red-100 border-b-4 border-red-500"
+      >
+        <h3 class="text-3xl font-extrabold text-red-700">3000+</h3>
+        <p class="text-gray-700 mt-2">
+          Working Professionals studying in the program
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center bg-red-100 border-b-4 border-red-500"
+      >
+        <h3 class="text-3xl font-extrabold text-red-700">850+</h3>
+        <p class="text-gray-700 mt-2">
+          Secured Admission to Masters/PhD programs within and outside India
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center bg-red-100 border-b-4 border-red-500"
+      >
+        <h3 class="text-3xl font-extrabold text-red-700">20+</h3>
+        <p class="text-gray-700 mt-2">
+          BS students in Top 100 Ranks of GATE Exam 2024
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICON-BASED PROGRAM FEATURES -->
+  <section class="bg-gray-50 py-12">
+    <div
+      class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 text-center"
+    >
+      <!-- Best Online Program -->
+      <div class="info-card bg-white p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/fa314a/trophy--v1.png"
+          alt="Trophy icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">
+          Best Online Program
+        </h4>
+        <p class="text-gray-600 mt-2">
+          Awarded by
+          <span class="text-orange-600 font-semibold"
+            >QS Reimagine Education &amp; The Wharton School,
+            University of Pennsylvania</span
+          >
+        </p>
+      </div>
+
+      <!-- Scholarship -->
+      <div class="info-card bg-white p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/fa314a/graduation-cap--v1.png"
+          alt="Scholarship icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">Scholarship</h4>
+        <p class="text-gray-600 mt-2">
+          Learners from
+          <span class="font-semibold text-gray-800">&lt; 5LPA</span>
+          eligible for up to 75% fee waivers. 2000+ students study for free
+        </p>
+      </div>
+
+      <!-- No Age Limit -->
+      <div class="info-card bg-white p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/fa314a/gender-neutral-user.png"
+          alt="User icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">No Age Limit</h4>
+        <p class="text-gray-600 mt-2">
+          Learners from any age and anywhere in the world can study in this
+          program. Current age of learners: 17 to 81 years.
+        </p>
+      </div>
+
+      <!-- Mode Of Study -->
+      <div class="info-card bg-white p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/fa314a/online.png"
+          alt="Online icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">Mode Of Study</h4>
+        <p class="text-gray-600 mt-2">
+          Pre-recorded and synchronous sessions, Weekly Online Assignments,
+          In-person quizzes
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICON-BASED COURSE LISTING -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-6">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center"
+      >
+        <!-- Data Science Courses -->
+        <div class="info-card bg-gray-50 p-6 rounded-lg shadow-md">
+          <img
+            src="https://img.icons8.com/ios-filled/50/fa314a/lego.png"
+            alt="Lego icon"
+            class="mx-auto mb-3"
+          />
+          <h3 class="text-xl font-bold text-black">
+            Data Science Courses
+          </h3>
+          <p class="text-gray-600">
+            ML Foundations, Deep Learning, Reinforcement Learning, Computer
+            Vision, LLMs, Big Data
+          </p>
+        </div>
+        <!-- Programming Courses (New Code Icon) -->
+        <div class="info-card bg-gray-50 p-6 rounded-lg shadow-md">
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/colorful-design-basic-icons-1/550/coding_code_red-512.png"
+            alt="Code icon"
+            class="mx-auto mb-3 w-12 h-12"
+          />
+          <h3 class="text-xl font-bold text-black">
+            Programming Courses
+          </h3>
+          <p class="text-gray-600">
+            Python, Java, PostgreSQL, Linux commands, C programming, Full Stack
+            Application Development
+          </p>
+        </div>
+        <!-- Frameworks And Libraries -->
+        <div class="info-card bg-gray-50 p-6 rounded-lg shadow-md">
+          <img
+            src="https://img.icons8.com/ios-filled/50/fa314a/artificial-intelligence.png"
+            alt="AI icon"
+            class="mx-auto mb-3"
+          />
+          <h3 class="text-xl font-bold text-black">
+            Frameworks And Libraries
+          </h3>
+          <p class="text-gray-600">
+            Flask, Vue, NumPy, Scikitlearn, Pytorch, OpenCV, Kafka and many more
+            relevant for Data Science applications
+          </p>
+        </div>
+        <!-- Business Courses -->
+        <div class="info-card bg-gray-50 p-6 rounded-lg shadow-md">
+          <img
+            src="https://img.icons8.com/ios-filled/50/fa314a/open-book.png"
+            alt="Book icon"
+            class="mx-auto mb-3"
+          />
+          <h3 class="text-xl font-bold text-black">
+            Business Courses
+          </h3>
+          <p class="text-gray-600">
+            Business Data Management, Business Analytics, Tools in Data Science,
+            Financial Forensics, Market Research, Managerial Economics
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+            >support@study.iitm.ac.in</a
+          >
+          |
+          Phone:
+          <span class="text-gray-200">7850-999966</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding 
+          the program. Our normal response time is 3 working days; it might take
+          a little longer during busy periods. We will share Google Meet links
+          during such periods. Due to the high volume of calls we receive every
+          day, there might be long wait times. In some cases, you might have to
+          call multiple times to successfully connect to us.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

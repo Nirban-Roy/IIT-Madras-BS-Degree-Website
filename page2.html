@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras - BS in Electronic Systems</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background-color: #19DEFF; /* Light Blue background */
+    }
+
+    /* HEADER & FOOTER BACKGROUND (Dark Blue-ish) */
+    .brand-header {
+      background-color: #009AB2; /* Header */
+    }
+    .brand-footer {
+      background-color: #003f4f; /* Footer */
+    }
+
+    /* HERO BACKGROUND */
+    .hero-bg {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 63, 79, 0.85),
+          rgba(0, 63, 79, 0.85)
+        ),
+        url('https://via.placeholder.com/1600x900?text=Electronic+Systems+Hero+Image');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Announcement Marquee */
+    .announcement-marquee {
+      background: #003f4f;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0%   { transform: translateX(100%); }
+      25%  { transform: translateX(0%); }
+      75%  { transform: translateX(-100%); }
+      100% { transform: translateX(-200%); }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(90deg, #19DEFF, #009AB2);
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(90deg, #009AB2, #19DEFF);
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 154, 178, 0.4);
+    }
+
+    /* Buttons */
+    .futuristic-btn {
+      background: linear-gradient(90deg, #19DEFF, #009AB2);
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 154, 178, 0.5);
+      background: linear-gradient(90deg, #009AB2, #19DEFF);
+    }
+    .sign-in-btn {
+      background: linear-gradient(90deg, rgba(100, 116, 139, 1), rgba(51, 65, 85, 1));
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(51, 65, 85, 0.5);
+      background: linear-gradient(90deg, rgba(51, 65, 85, 1), rgba(100, 116, 139, 1));
+    }
+
+    /* Cards */
+    .metric-card,
+    .info-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .metric-card:hover,
+    .info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    .metric-card {
+      background-color: #e9fcff; /* a very light blue tint */
+      border-bottom: 4px solid #009AB2;
+    }
+    .metric-card h3 {
+      color: #009AB2;
+    }
+    .metric-card p {
+      color: #555;
+    }
+    .info-card {
+      background-color: #fff;
+    }
+
+    /* Video Container (Optional) */
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; 
+      left: 0;
+      width: 100%; 
+      height: 100%;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- HEADER -->
+  <header class="brand-header text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='bome.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+      <!-- Nav Links -->
+      <nav class="flex space-x-4 text-lg font-medium">
+        <a href="academicsES.html" class="hover:text-yellow-200 transition-colors">Academics</a>
+        <a href="admissionsES.html" class="hover:text-yellow-200 transition-colors">Admissions</a>
+        <a href="studentlifeES.html" class="hover:text-yellow-200 transition-colors">Student Life</a>
+        <a href="aboutIITMES.html" class="hover:text-yellow-200 transition-colors">AboutIITM</a>
+      </nav>
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinES.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- HERO SECTION (Dark Blue-ish overlay) -->
+  <section
+    class="hero-bg text-white text-center py-16 md:py-24 relative overflow-hidden"
+  >
+    <div class="container mx-auto relative z-10 px-6">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
+        Bachelor of Science (BS) Degree in Electronic Systems
+      </h2>
+      <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto">
+        IIT Madras, India’s top technical institute, welcomes you to the 
+        Four-year BS in Electronic Systems. Study from anywhere, at your own pace.
+      </p>
+
+      <p class="text-md md:text-lg max-w-2xl mx-auto mb-6">
+        For the first time, you can work toward an undergraduate degree from an IIT 
+        regardless of your location or academic background. Join thousands of students 
+        already exploring real-world electronics and embedded systems.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div
+        class="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-4"
+      >
+        <a
+          href="#"
+          class="futuristic-btn font-bold text-md tracking-wider"
+        >
+          More Details
+        </a>
+        <a
+          href="#"
+          class="futuristic-btn font-bold text-md tracking-wider"
+        >
+          Fee Structure
+        </a>
+      </div>
+
+      <!-- Optional Video box -->
+      <div class="max-w-md mx-auto mt-8 shadow-lg">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube.com/embed/lEMtlAqlJww"
+            title="IIT Madras BS in Electronic Systems"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- METRIC STATS -->
+  <section class="bg-white py-12">
+    <div
+      class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6"
+    >
+      <div
+        class="metric-card rounded-lg p-6 text-center"
+      >
+        <h3 class="text-3xl font-extrabold">
+          15,000+
+        </h3>
+        <p class="mt-2">
+          Students exploring real-world electronics
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center"
+      >
+        <h3 class="text-3xl font-extrabold">
+          200+
+        </h3>
+        <p class="mt-2">
+          Industry partnerships
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center"
+      >
+        <h3 class="text-3xl font-extrabold">
+          140+
+        </h3>
+        <p class="mt-2">
+          Credits for BS degree
+        </p>
+      </div>
+      <div
+        class="metric-card rounded-lg p-6 text-center"
+      >
+        <h3 class="text-3xl font-extrabold">
+          100%
+        </h3>
+        <p class="mt-2">
+          Online + In-person Lab options
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAM FEATURES (Icon-based) -->
+  <section class="bg-gray-50 py-12">
+    <div
+      class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 text-center"
+    >
+      <div class="info-card p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/009AB2/microchip.png"
+          alt="Microchip icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">
+          Industry-Ready Skills
+        </h4>
+        <p class="text-gray-600 mt-2">
+          Embedded systems, digital design, real hardware lab exposure.
+        </p>
+      </div>
+
+      <div class="info-card p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/009AB2/graduation-cap--v1.png"
+          alt="Cap icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">Eligibility</h4>
+        <p class="text-gray-600 mt-2">
+          Anyone who completed class 12 with Physics/Math can apply, 
+          no age or location bar.
+        </p>
+      </div>
+
+      <div class="info-card p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/009AB2/organization.png"
+          alt="Organization icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">Flexibility</h4>
+        <p class="text-gray-600 mt-2">
+          Choose your pace, number of courses per term. Full BS at 140+ credits.
+        </p>
+      </div>
+
+      <div class="info-card p-6 rounded-lg shadow-md">
+        <img
+          src="https://img.icons8.com/ios-filled/50/009AB2/online.png"
+          alt="Online icon"
+          class="mx-auto mb-3"
+        />
+        <h4 class="text-xl font-bold text-black">Coursework</h4>
+        <p class="text-gray-600 mt-2">
+          Tutorials, clearing sessions, quizzes, in-person labs on campus.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer text-white py-10">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+            >support@study.iitm.ac.in</a
+          >
+          | Phone:
+          <span class="text-gray-200">1234-567890</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding
+          the program. Response time is 3 working days; it might be longer during busy periods.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

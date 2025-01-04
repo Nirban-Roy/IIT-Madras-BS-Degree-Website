@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras BS Program - Partnerships</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    section[id] {
+      scroll-margin-top: 7rem; /* Offsets sticky header + marquee */
+    }
+
+    /* MARQUEE (Announcement) */
+    .announcement-marquee {
+      background: #8b0000;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      25% {
+        transform: translateX(0%);
+      }
+      75% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(-200%);
+      }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(128, 128, 128, 1),
+        rgba(50, 50, 50, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(128, 128, 128, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(50, 50, 50, 1),
+        rgba(128, 128, 128, 1)
+      );
+    }
+
+    /* DROP DOWN MENU - OPEN ON CLICK (same style as academics) */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      background: linear-gradient(90deg, rgba(239,68,68,1), rgba(245,158,11,1));
+      min-width: 16rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      z-index: 50;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+      display: none;
+    }
+    .dropdown a {
+      color: #fff;
+      padding: 0.5rem 1rem;
+      display: block;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      font-weight: 500;
+      border-radius: 0.25rem;
+    }
+    .dropdown a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN CONTENT STYLING (like in academicsDS) */
+    .content-section {
+      background: #faf7e7; /* pale pastel */
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-section:hover {
+      background-color: #f3eed5;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .section-heading {
+      color: #ef4444;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* AWARDS IMAGES - bring to center */
+    .award-img {
+      max-width: 200px;
+      border-radius: 0.5rem;
+      margin: 0.5rem auto; /* slight spacing & center alignment */
+    }
+    .award-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* center images horizontally */
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* INDIA IMAGE */
+    .india-img {
+      max-width: 300px;
+      border-radius: 0.5rem;
+      margin: 0.5rem auto;
+    }
+    .india-img-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    /* TABLE */
+    .custom-table {
+      border-radius: 0.75rem; 
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- HEADER (same as academicsDS) -->
+  <header class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeDS.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with Dropdowns -->
+      <nav class="flex space-x-4 text-lg font-medium relative">
+        <!-- Academics -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div id="academicsDropdown" class="dropdown-menu">
+            <a href="academicsDS.html#overall-structure">Overall Structure</a>
+            <a href="academicsDS.html#term-structure">Term Structure</a>
+            <a href="academicsDS.html#course-registrations">Course Registrations</a>
+            <a href="academicsDS.html#assessments">Assessments</a>
+            <a href="academicsDS.html#exam-cities">Exam Cities</a>
+            <a href="academicsDS.html#fee-structure">Fee Structure</a>
+            <a href="academicsDS.html#foundation-level">Foundation Level</a>
+            <a href="academicsDS.html#diploma-level">Diploma Level</a>
+            <a href="academicsDS.html#bsc-degree-level">BSc Degree Level</a>
+            <a href="academicsDS.html#bs-degree-level">BS Degree Level</a>
+            <a href="academicsDS.html#degree-level-courses">Degree Level Courses</a>
+            <a href="academicsDS.html#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div id="admissionsDropdown" class="dropdown-menu">
+            <a href="admissionsDS.html#important-dates">Important Dates</a>
+            <a href="admissionsDS.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsDS.html#eligibility">Eligibility to Apply</a>
+            <a href="admissionsDS.html#application-process">Application Process</a>
+            <a href="admissionsDS.html#admission-foundation">Admission to the Foundation Level</a>
+            <a href="admissionsDS.html#regular-entry">1. Regular Entry</a>
+            <a href="admissionsDS.html#jee-entry">2. JEE-based Entry</a>
+            <a href="admissionsDS.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div id="studentLifeDropdown" class="dropdown-menu">
+            <a href="studentlifeDS.html#student-houses">Student Houses & Societies</a>
+            <a 
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home"
+              target="_blank"
+            >
+              PARADOX/Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div id="aboutIITMDropdown" class="dropdown-menu">
+            <a href="aboutIITMDS.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMDS.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMDS.html#contact-us">Contact Us</a>
+            <a
+              href="https://podgoodies.iitmadrasonline.in/"
+              target="_blank"
+            >
+              Merchandise
+            </a>
+          </div>
+        </div>
+
+        <!-- Partnerships -->
+        <div>
+          <a
+            href="partnershipsDS.html"
+            class="hover:text-yellow-400 transition-colors inline-block"
+          >
+            Partnerships
+          </a>
+        </div>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinDS.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10 space-y-12 text-gray-800">
+    
+    <!-- Partnerships Intro -->
+    <section class="content-section">
+      <h2 class="section-heading">Partnerships</h2>
+      <p class="section-paragraph">
+        IITM invites Industry Partners for its Diploma / Degree in Programming 
+        and Data Science program — India's very first online UG program on a 
+        massive scale.
+      </p>
+      <p class="section-paragraph font-semibold">
+        Connect with us by writing to 
+        <a href="mailto:iic@study.iitm.ac.in" class="text-blue-600 underline">iic@study.iitm.ac.in</a>
+        for more details.
+      </p>
+      <p class="section-paragraph">
+        Companies and organizations can partner, contribute, and benefit in the following ways:
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>1. Knowledge Partners</li>
+        <li>2. CSR Partners</li>
+        <li>3. “Professionals Speak” on current industry and technology trends</li>
+        <li>4. Mentorship of students</li>
+        <li>5. Internships and Recruitment</li>
+        <li>6. Support your employees upskill with a Diploma in Programming or Data Science or both</li>
+      </ul>
+    </section>
+
+    <!-- Knowledge Partners -->
+    <section class="content-section">
+      <h2 class="section-heading">Knowledge Partners</h2>
+      <p class="section-paragraph">
+        Top leaders / researchers from companies such as Google, Flipkart, Paypal, Gramener 
+        are <em>contributing content to the courses</em> in the Diploma level, drawing from 
+        their rich experience on the ground and sharing with our learners. Insights from industry 
+        leaders are vital to nurture future talent in the area of Data Science.
+      </p>
+    </section>
+
+    <!-- CSR Partners -->
+    <section class="content-section">
+      <h2 class="section-heading">CSR Partners</h2>
+      <p class="section-paragraph">
+        IIT Madras has instituted Merit-cum-Means scholarships for its students with CSR support 
+        from various companies. These funds will support deserving students with their tuition fees, 
+        making IIT Madras more accessible for everyone.
+      </p>
+      <p class="section-paragraph">
+        Companies such as Verizon India, L&amp;T Technology Services, L&amp;T Thales Technology 
+        Services Private Limited, Dun &amp; Bradstreet, Natesan, Synchrounus, Walmart, Renault-Nissan, 
+        Ram Shriram Foundation, Tata AIA, Tiger Analytics, Cargill Business Services, Cochin Shipyard, 
+        and DB Ronnellay have generously contributed to institute merit-cum-means scholarships 
+        to remove financial blocks from the path of economically disadvantaged students. 
+        More than 1700 students with family income less than 5 LPA are currently being supported 
+        in their journey of earning Diplomas and the BS degree from IIT Madras.
+      </p>
+      <p class="section-paragraph">
+        We are very glad to share that as the implementing institute, the IIT Madras BS Degree Program 
+        has been recognized with:
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          The ASSOCHAM CSR and Sustainability Award for Excellence in Supporting Education 
+          and Skill for 2022 
+          (<a
+            href="#"
+            target="_blank"
+            class="underline text-blue-600"
+            >Article1</a>)
+        </li>
+        <li>
+          The CSRUniverse Social Impact Awards 2023 in the Education category 
+          (<a
+            href="#"
+            target="_blank"
+            class="underline text-blue-600"
+            >Article2</a>)
+        </li>
+      </ul>
+      <!-- Centered awards images -->
+      <div class="award-wrapper">
+        <img
+          src="https://study.iitm.ac.in/ds/assets/img/csr/assocham%20award.jpg"
+          alt="ASSOCHAM Award"
+          class="award-img"
+        />
+        <img
+          src="https://study.iitm.ac.in/ds/assets/img/csr/IIT%20Madras-csruniverse.jpg"
+          alt="CSRuniverse Award"
+          class="award-img"
+        />
+      </div>
+      <p class="section-paragraph mt-4">
+        All CSR funds are routed through IIT Madras which is the authorized body to receive 
+        CSR donations from companies. Currently, there are 22,000+ students pursuing 
+        the IIT Madras BS Degree program. The program takes in students 3 times a year; 
+        as the Degree level courses are done online and do not require physical presence of the student. 
+        About 7500 new students join our program each year, of which 25-30% fall in the &lt; 5 lpa category.
+      </p>
+      <h3 class="font-semibold mt-4 mb-2">Appeal to donors</h3>
+      <p class="section-paragraph">
+        Due to increasing educational costs, financial assistance is more than ever required. 
+        We believe that funding through CSR will make a real, significant impact on the lives 
+        of our students. Here is a glimpse of the eligible students who are availing support:
+      </p>
+      <div class="overflow-x-auto bg-white rounded shadow mt-4 mb-4 custom-table">
+        <table class="min-w-full text-left text-gray-700">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4">Annual Family Income &lt; 1 Lakh</th>
+              <th class="py-3 px-4">Annual Family Income 1 to 5 Lakhs</th>
+              <th class="py-3 px-4">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b">
+              <td class="py-3 px-4">Female: 155</td>
+              <td class="py-3 px-4">Female: 154</td>
+              <td class="py-3 px-4">309</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Male: 1267</td>
+              <td class="py-3 px-4">Male: 744</td>
+              <td class="py-3 px-4">2011</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Total: 1422</td>
+              <td class="py-3 px-4">Total: 898</td>
+              <td class="py-3 px-4">2320</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        If you wish to obtain more details on how you can create an impact by donating to our causes, 
+        please refer to the 
+        <strong>Proposal for CSR Support for Merit-cum-Means Scholarship document</strong> 
+        and write to 
+        <a
+          href="mailto:jayabala@study.iitm.ac.in"
+          class="underline text-blue-600"
+        >
+          jayabala@study.iitm.ac.in
+        </a>
+        for any further information needed in this regard.
+      </p>
+      <!-- India map (centered) -->
+      <div class="india-img-wrapper">
+        <img
+          src="https://study.iitm.ac.in/ds/assets/img/csr/IIT%20Madras-csruniverse.jpg"
+          alt="India Map"
+          class="india-img"
+        />
+      </div>
+    </section>
+
+    <!-- Hear from Our Student Beneficiaries -->
+    <section class="content-section">
+      <h2 class="section-heading">Hear from our student beneficiaries</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        <!-- 1. HSBC scholarship beneficiaries -->
+        <div>
+          <p class="font-semibold mb-2">HSBC scholarship beneficiaries:</p>
+          <div class="max-w-sm mx-auto">
+            <div
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                border-radius: 0.5rem;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+              "
+            >
+              <iframe
+                src="https://www.youtube.com/embed/S4B9-B33zGk"
+                title="HSBC Scholarship - Student Testimonial"
+                frameborder="0"
+                allowfullscreen
+                style="position:absolute; top:0; left:0; width:100%; height:100%;"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <!-- 2. Other CSR beneficiaries -->
+        <div>
+          <p class="font-semibold mb-2">Other CSR beneficiaries:</p>
+          <div class="max-w-sm mx-auto">
+            <div
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                border-radius: 0.5rem;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+              "
+            >
+              <iframe
+                src="https://www.youtube.com/embed/fT04DuyMNK4"
+                title="CSR Beneficiary - Student Testimonial"
+                frameborder="0"
+                allowfullscreen
+                style="position:absolute; top:0; left:0; width:100%; height:100%;"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Professionals Speak -->
+    <section class="content-section">
+      <h2 class="section-heading">“Professionals Speak” on current industry and technology trends</h2>
+      <p class="section-paragraph">
+        Employees of Industry partners who have more than 10+ years of experience in relevant fields 
+        have delivered multiple <em>talks on topics related to application development, 
+        programming and data science</em>. 
+        This gives students in the course a valuable opportunity to interact with experienced 
+        professionals and get a perspective on the latest technological trends in top companies. 
+        More than 50 sessions have been delivered so far by professionals from companies 
+        such as IBM, CapGemini, Infosys, etc. The links to the expert sessions from the industry 
+        are given in 
+        <a
+          href="#"
+          class="underline text-blue-600"
+        >
+          this sheet
+        </a>.
+      </p>
+    </section>
+
+    <!-- Mentorship of Students -->
+    <section class="content-section">
+      <h2 class="section-heading">Mentorship of Students</h2>
+      <p class="section-paragraph">
+        Companies have also partnered with IITM to provide <em>mentoring and technical assistance</em> 
+        of students in their areas of study as well as in their projects. 
+        Employees engaging in this activity will get to interact with small groups of students 
+        over a term and get a better idea of the students in the program. 
+        Such employees will also be recognized for their efforts and time spent. 
+        Other opportunities for mentoring by these companies include organization of hackathons, 
+        short workshops, and boot camp style training for the students of the IITM BS program.
+      </p>
+    </section>
+
+    <!-- Internships and Recruitment -->
+    <section class="content-section">
+      <h2 class="section-heading">Internships and Recruitment</h2>
+      <p class="section-paragraph">
+        IITM BS program has an active group which is working with IITM’s on-campus internships 
+        and placement wing, and also approaching partner companies for <em>relevant opportunities 
+        for the students who graduate</em>. A pool of qualified diploma holders in programming 
+        and data science from IIT Madras will be available for companies to hire as interns 
+        for longer durations of 6 months or 1 year, as the Degree level courses can be done online 
+        and do not require physical presence of the student.
+      </p>
+      <p class="section-paragraph">
+        As part of the program, our learners will develop core technical skills in Programming 
+        and Data Science, some of which are listed below:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ul class="list-disc list-inside bg-white p-4 rounded-xl shadow text-gray-800">
+          <li class="font-bold mb-1">Diploma in Programming:</li>
+          <li>Proficiency in coding in python and java</li>
+          <li>Strong foundations in data structures and algorithms</li>
+          <li>Use of SQL, database design, application development, system commands</li>
+          <li>Testing, documentation, handling APIs</li>
+        </ul>
+        <ul class="list-disc list-inside bg-white p-4 rounded-xl shadow text-gray-800">
+          <li class="font-bold mb-1">Diploma in Data Science:</li>
+          <li>Strong fundamentals in mathematics, statistics</li>
+          <li>Machine learning techniques, using algorithms to solve practical problems</li>
+          <li>Data handling with scikit-learn, Tensorflow, etc.</li>
+          <li>Articulating analytics to make an informed decision</li>
+        </ul>
+      </div>
+      <p class="section-paragraph mt-4">
+        For more details, please refer to the 
+        <a href="#" class="underline text-blue-600">Internship &amp; Placement brochure</a>.
+      </p>
+    </section>
+
+    <!-- Support your employees -->
+    <section class="content-section">
+      <h2 class="section-heading">
+        Support your employees upskill with a Diploma in Programming or Data Science or both
+      </h2>
+      <p class="section-paragraph">
+        IITM offers a unique opportunity for those with a graduate degree or above to be able 
+        to apply directly to pursue a diploma in programming or data science or both. 
+        Each diploma comprises 6 courses and details can be found on our 
+        <a href="academicsDS.html#diploma-level" class="underline text-blue-600">
+          Academics page
+        </a>. 
+        Companies can sponsor and support their employees to enroll and study from IIT Madras 
+        which will help them stay updated and relevant and acquire a new set of skills.
+      </p>
+      <p class="section-paragraph">
+        Since the course does not have a real-time, on-campus component, it is convenient 
+        for employees to study without disruption to their work schedule.
+      </p>
+      <p class="section-paragraph font-semibold">
+        Any company wishing to know more about the above initiatives and partner with IIT Madras 
+        can kindly contact the industry Interaction Cell, 
+        <a href="mailto:iic@study.iitm.ac.in" class="underline text-blue-600">
+          iic@study.iitm.ac.in
+        </a>.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER (same as academicsDS) -->
+  <footer class="bg-gray-900 text-white py-10 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+            >support@study.iitm.ac.in</a
+          >
+          |
+          Phone:
+          <span class="text-gray-200">7850-999966</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding 
+          the program. Our normal response time is 3 working days; it might take
+          a little longer during busy periods. We will share Google Meet links
+          during such periods. Due to the high volume of calls we receive every
+          day, there might be long wait times. In some cases, you might have to
+          call multiple times to successfully connect to us.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIMPLE JS FOR DROPDOWNS & SMOOTH SCROLL ADJUSTMENT -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // close others
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (menu !== dropdown) {
+          menu.style.display = 'none';
+        }
+      });
+      // toggle current
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras BS Program - Admissions</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    /* Ensures headings are visible when jumping to anchors */
+    section[id] {
+      scroll-margin-top: 7rem; /* Adjust if needed for the sticky header + marquee */
+    }
+
+    /* MARQUEE (Announcement) */
+    .announcement-marquee {
+      background: #8b0000;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      25% {
+        transform: translateX(0%);
+      }
+      75% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(-200%);
+      }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(239, 68, 68, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(245, 158, 11, 1),
+        rgba(239, 68, 68, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(239, 68, 68, 1),
+        rgba(245, 158, 11, 1)
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(128, 128, 128, 1),
+        rgba(50, 50, 50, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(128, 128, 128, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(50, 50, 50, 1),
+        rgba(128, 128, 128, 1)
+      );
+    }
+
+    /* DROP DOWN MENU - OPEN ON CLICK */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      position: absolute;
+      right: 0;
+      background: linear-gradient(90deg, rgba(239,68,68,1), rgba(245,158,11,1));
+      min-width: 16rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      z-index: 50;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+      display: none;
+    }
+    .dropdown a {
+      color: #fff;
+      padding: 0.5rem 1rem;
+      display: block;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      font-weight: 500;
+      border-radius: 0.25rem;
+    }
+    .dropdown a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* MAIN CONTENT STYLING (similar to academics) */
+    .content-section {
+      background: #e7f9f7;  /* a different pastel (soft teal) */
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-section:hover {
+      background-color: #d5f1ec; /* slightly darker pastel for effect */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .section-heading {
+      color: #ef4444;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    /* Rounder corners for tables */
+    .custom-table {
+      border-radius: 0.75rem; 
+      overflow: hidden;
+    }
+
+    /* LIST STYLING */
+    .list-disc li {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- HEADER -->
+  <header class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeDS.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with Dropdowns -->
+      <nav class="flex space-x-4 text-lg font-medium relative">
+        <!-- Academics (on click => show/hide dropdown) -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div
+            id="academicsDropdown"
+            class="dropdown-menu"
+          >
+            <a href="academicsDS.html#overall-structure">Overall Structure</a>
+            <a href="academicsDS.html#term-structure">Term Structure</a>
+            <a href="academicsDS.html#course-registrations">Course Registrations</a>
+            <a href="academicsDS.html#assessments">Assessments</a>
+            <a href="academicsDS.html#exam-cities">Exam Cities</a>
+            <a href="academicsDS.html#fee-structure">Fee Structure</a>
+            <a href="academicsDS.html#foundation-level">Foundation Level</a>
+            <a href="academicsDS.html#diploma-level">Diploma Level</a>
+            <a href="academicsDS.html#bsc-degree-level">BSc Degree Level</a>
+            <a href="academicsDS.html#bs-degree-level">BS Degree Level</a>
+            <a href="academicsDS.html#degree-level-courses">Degree Level Courses</a>
+            <a href="academicsDS.html#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div id="admissionsDropdown" class="dropdown-menu">
+            <a href="admissionsDS.html#important-dates">Important Dates</a>
+            <a href="admissionsDS.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsDS.html#who-can-apply">Who can apply?</a>
+            <a href="admissionsDS.html#application-process">Application Process</a>
+            <a href="admissionsDS.html#admission-foundation">Admission to the Foundation Level</a>
+            <a href="admissionsDS.html#regular-entry">Regular Entry</a>
+            <a href="admissionsDS.html#jee-based-entry">JEE-based Entry</a>
+            <a href="admissionsDS.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div id="studentLifeDropdown" class="dropdown-menu">
+            <a href="studentlifeDS.html#student-houses">Student Houses & Societies</a>
+            <a 
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home" 
+              target="_blank"
+            >
+              PARADOX/Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-400 transition-colors inline-block focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div id="aboutIITMDropdown" class="dropdown-menu">
+            <a href="aboutIITMDS.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMDS.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMDS.html#contact-us">Contact Us</a>
+            <a
+              href="https://podgoodies.iitmadrasonline.in/"
+              target="_blank"
+            >
+              Merchandise
+            </a>
+          </div>
+        </div>
+
+        <!-- Partnerships (no dropdown) -->
+        <div>
+          <a
+            href="partnershipsDS.html"
+            class="hover:text-yellow-400 transition-colors inline-block"
+          >
+            Partnerships
+          </a>
+        </div>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinDS.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10 space-y-12 text-gray-800">
+
+    <!-- Important Dates -->
+    <section id="important-dates" class="content-section">
+      <h2 class="section-heading">Important Dates</h2>
+      <div class="overflow-x-auto custom-table mb-4">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Application Milestone</th>
+              <th class="py-3 px-4 text-left">for September 2024 Batch</th>
+              <th class="py-3 px-4 text-left">for January 2025 Batch</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">Application Form Opens</td>
+              <td class="py-3 px-4">Monday, June 17, 2024</td>
+              <td class="py-3 px-4">Friday, October 4, 2024</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Application Form Closes</td>
+              <td class="py-3 px-4">Sunday, September 15, 2024</td>
+              <td class="py-3 px-4">Thursday, January 2, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Qualifier Phase Week 1 Starts</td>
+              <td class="py-3 px-4">Friday, September 20, 2024</td>
+              <td class="py-3 px-4">Friday, January 10, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Qualifier Exam</td>
+              <td class="py-3 px-4">Sunday, October 27, 2024</td>
+              <td class="py-3 px-4">Sunday, February 23, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Qualifier Results</td>
+              <td class="py-3 px-4">Friday, November 1, 2024</td>
+              <td class="py-3 px-4">Thursday, February 27, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Registration Opens (only if cleared Qualifier Exam)</td>
+              <td class="py-3 px-4">Wednesday, November 6, 2024</td>
+              <td class="py-3 px-4">Thursday, February 27, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Registration Closes</td>
+              <td class="py-3 px-4">Thursday, November 7, 2024</td>
+              <td class="py-3 px-4">Friday, February 28, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Re-attempt Qualifier Opens</td>
+              <td class="py-3 px-4">Wednesday, November 6, 2024</td>
+              <td class="py-3 px-4">Thursday, February 27, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Re-attempt Qualifier Closes</td>
+              <td class="py-3 px-4">Thursday, November 7, 2024</td>
+              <td class="py-3 px-4">Friday, February 28, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Re-attempt Qualifier Exam (re-attempt fee applies)</td>
+              <td class="py-3 px-4">Sunday, December 1, 2024</td>
+              <td class="py-3 px-4">Sunday, March 16, 2025</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Re-attempt Qualifier Results</td>
+              <td class="py-3 px-4">Wednesday, December 11, 2024</td>
+              <td class="py-3 px-4">Wednesday, March 26, 2025</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">Registration Opens (if cleared re-attempt)</td>
+              <td class="py-3 px-4">Tuesday, December 31, 2024</td>
+              <td class="py-3 px-4">Monday, April 28, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Mandatory Requirements -->
+    <section id="mandatory-requirements" class="content-section">
+      <h2 class="section-heading">Mandatory Requirements to Enroll and Learn</h2>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          Access to good internet connection as well as a laptop/desktop 
+          device is a key requirement to learn effectively. See 
+          <a href="#" class="underline text-blue-600 hover:text-blue-800">
+            Mandatory System Specifications
+          </a>.
+        </li>
+        <li>
+          Learner should be able to travel to assigned exam centres for quizzes and exams, 
+          each term. Check the list of 
+          <a href="#" class="underline text-blue-600 hover:text-blue-800">
+            exam cities
+          </a>
+          where our exam centres are located.
+        </li>
+      </ul>
+      <p class="section-paragraph mt-4">
+        <em>
+          Note: The details below are for the BS degree in Data Science and Applications 
+          from IIT Madras. We also offer a Diploma-only program for those who are interested 
+          exclusively in pursuing a Diploma in Programming or Diploma in Data Science. 
+          Please visit the 
+          <a href="#" class="underline text-blue-600 hover:text-blue-800">
+            Diploma Program website
+          </a>
+          for further details.
+        </em>
+      </p>
+    </section>
+
+    <!-- Who can apply -->
+    <section id="who-can-apply" class="content-section">
+      <h2 class="section-heading">Who can apply for admission?</h2>
+      <p class="section-paragraph">
+        <strong>1.</strong> Anyone who has passed Class 12 or equivalent can apply irrespective of age 
+        or academic background. Those who qualify can join the program immediately. View 
+        <a href="#" class="underline text-blue-600 hover:text-blue-800">list of accepted Class 12 equivalents</a>.
+      </p>
+      <p class="section-paragraph">
+        <strong>2.</strong> School students who have appeared for their Class 11 final exams can apply 
+        irrespective of their group/stream/board. Those who qualify can join the program after 
+        passing Class 12.
+      </p>
+      <p class="section-paragraph">
+        It is expected that the applicants have studied Mathematics and English in Class 10.  
+        No additional eligibility beyond the ones mentioned above is required to apply for 
+        the qualifier process or join the foundational level courses after clearing the qualifying exam.
+      </p>
+    </section>
+
+    <!-- Application Process -->
+    <section id="application-process" class="content-section">
+      <h2 class="section-heading">Application Process</h2>
+      <p class="section-paragraph">
+        Applications for the batch starting January 2025 are now open. 
+        <a href="#" class="underline text-blue-600 hover:text-blue-800">Apply Now</a>.
+      </p>
+      <p class="section-paragraph">
+        Anyone who is eligible may start applying by filling in a simple application form 
+        and paying the application fee.
+      </p>
+      <div class="overflow-x-auto custom-table mb-4">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Category</th>
+              <th class="py-3 px-4 text-left">Application Fee</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">General Category / OBC Applicant</td>
+              <td class="py-3 px-4">₹3000 application fee</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">SC / ST Category / PwD (>= 40% disability) Applicant</td>
+              <td class="py-3 px-4">₹1500 application fee</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">SC / ST Category Applicant who is ALSO PwD (>= 40% disability)</td>
+              <td class="py-3 px-4">₹750 application fee</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        An additional exam facilitation fee will apply for learners opting to write the 
+        Qualifier Exam in an Exam Centre outside India.
+      </p>
+      <p class="section-paragraph">
+        Application will be considered only when, after payment, applicant also fills in 
+        further details and submits required documents for verification. 
+        Applications without details &amp; documents, even if paid, will not be considered valid.
+      </p>
+    </section>
+
+    <!-- Admission to the Foundation Level -->
+    <section id="admission-foundation" class="content-section">
+      <h2 class="section-heading">Admission to the Foundation Level</h2>
+      <p class="section-paragraph">
+        <strong>Regular entry:</strong> All candidates, irrespective of their backgrounds, 
+        can earn admission to the Foundation Level by successfully completing the qualifier 
+        process. See details below.
+      </p>
+      <p class="section-paragraph">
+        <strong>JEE-based entry:</strong> Candidates eligible to appear for the most recent 
+        JEE Advanced are directly admitted to the Foundation Level. 
+        <a href="#jee-based-entry" class="underline text-blue-600 hover:text-blue-800">
+          See details below
+        </a>.
+      </p>
+    </section>
+
+    <!-- Regular Entry -->
+    <section id="regular-entry" class="content-section">
+      <h2 class="section-heading">Regular Entry</h2>
+      <p class="section-paragraph">
+        All regular entry applicants must go through the Qualifier Process to earn admission 
+        to the Foundation Level.
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          <strong>Qualifier Preparation:</strong> The qualifier process includes 4 weeks of coursework 
+          based on lecture videos, assignments, and live sessions of the four foundational level courses 
+          – English 1, Mathematics for Data Science 1, Statistics for Data Science 1, and Computational Thinking. 
+          Each week an assignment must be submitted for grading in each course.
+        </li>
+        <li>
+          <strong>Qualifier Exam:</strong> At the end of the 4 weeks, a qualifier exam will be conducted 
+          for eligible candidates based on the content covered in the 4 weeks of study.
+        </li>
+      </ul>
+      <p class="section-paragraph mt-4">
+        <strong>Eligibility to appear for the qualifier exam (regular entry):</strong>
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          In each course, the average of the best 2 out of the first 3 assignment scores will be calculated. 
+          Only those who get the minimum required average assignment scores in all four courses 
+          (as given below) will be allowed to appear for the Qualifier Exam.
+        </li>
+      </ul>
+      <!-- Minimum average assignment score table -->
+      <div class="overflow-x-auto custom-table mb-4 mt-2">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Category</th>
+              <th class="py-3 px-4 text-left">Min. Average Assignment Score</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">General Learner</td>
+              <td class="py-3 px-4">40%</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">SC / ST / PwD (with 40% disability)</td>
+              <td class="py-3 px-4">30%</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">PwD (with 40% disability) &amp; SC / ST</td>
+              <td class="py-3 px-4">30%</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">OBC-NCL / EWS</td>
+              <td class="py-3 px-4">35%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        <strong>Qualifier Exam and Passing Criteria (regular entry):</strong><br/>
+        Only learners who are eligible to appear for the qualifier exam will receive the hall ticket for it. 
+        The in-person Qualifier Exam at the end of 4 weeks is of 4 hours duration and covers all 4 courses.
+      </p>
+      <p class="section-paragraph">
+        To pass the Qualifier Exam, the learner has to get a 
+        <strong>minimum Average Qualifier Exam Score</strong> and a 
+        <strong>minimum Qualifier Exam Score in each course individually</strong>. Refer table:
+      </p>
+      <!-- Qualifier exam table -->
+      <div class="overflow-x-auto custom-table mb-4">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Category</th>
+              <th class="py-3 px-4 text-left">Min. Req. Qualifier Exam Score in each course</th>
+              <th class="py-3 px-4 text-left">Min. Req. Average Qualifier Exam Score</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">General Learner</td>
+              <td class="py-3 px-4">40%</td>
+              <td class="py-3 px-4">50%</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">SC / ST / PwD with 40% disability</td>
+              <td class="py-3 px-4">30%</td>
+              <td class="py-3 px-4">40%</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">PwD with 40% disability &amp; SC / ST</td>
+              <td class="py-3 px-4">30%</td>
+              <td class="py-3 px-4">40%</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">OBC-NCL / EWS</td>
+              <td class="py-3 px-4">35%</td>
+              <td class="py-3 px-4">45%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        Only those who pass the Qualifier Exam will be eligible to register for the Foundation Level courses.
+      </p>
+      <p class="section-paragraph">
+        <strong>Validity of the Qualifier Exam result:</strong><br/>
+        For candidates who have already appeared for or cleared Class 12 board exams, 
+        the Qualifier Exam result is valid for a period of 3 terms (or 1 year). 
+        For candidates who are yet to appear for Class 12 board exams, 
+        the Qualifier Exam result is valid for 2 years (6 terms) from the passing of Class 12.
+      </p>
+      <p class="section-paragraph">
+        <strong>Re-attempt Qualifier Exam (regular entry):</strong><br/>
+        Learners who were eligible to appear for the qualifier exam, but did not clear 
+        the qualifier exam or were absent for it, will be eligible to 
+        <em>re-attempt</em> the qualifier exam in the same term (refer important dates) 
+        without having to repeat the assignments.
+      </p>
+      <div class="overflow-x-auto custom-table mb-4 mt-2">
+        <table class="min-w-full bg-white shadow">
+          <thead class="bg-red-500 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Category</th>
+              <th class="py-3 px-4 text-left">Re-attempt Fee</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">General / OBC Applicant</td>
+              <td class="py-3 px-4">₹1500 re-attempt fee</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">SC / ST Category / PwD (>= 40% disability) Applicant</td>
+              <td class="py-3 px-4">₹750 re-attempt fee</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4">SC / ST Category Applicant who is ALSO PwD (>= 40% disability)</td>
+              <td class="py-3 px-4">₹375 re-attempt fee</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        Learners who are not eligible to re-attempt OR do not clear the re-attempt exam 
+        may try again by applying again for the next exam series, with full application fee 
+        (₹3000 for general category applicants) and go through the entire qualifier process 
+        including weekly assignments and qualifier exam once more.
+      </p>
+    </section>
+
+    <!-- JEE-based Entry -->
+    <section id="jee-based-entry" class="content-section">
+      <h2 class="section-heading">JEE-based Entry</h2>
+      <p class="section-paragraph">
+        Candidates qualified to appear for current year's JEE Advanced can directly join our program 
+        by following the steps below:
+      </p>
+      <ol class="list-decimal list-inside pl-4 text-gray-700">
+        <li>
+          Complete the application form found 
+          <a href="#" class="underline text-blue-600 hover:text-blue-800">here</a>. 
+          Pay the admission fee of ₹3000.
+        </li>
+        <li>
+          Once we verify your proof for JEE Advanced, you are eligible to directly start 
+          the foundation level courses.
+        </li>
+        <li>
+          Next, you have to register for courses (English 1, Maths 1, Statistics 1, Computational Thinking) 
+          by paying the course fees. You can register for 1/2/3/4 courses depending on the time 
+          you would have to study.
+        </li>
+        <li>We will inform you of when you can register for courses.</li>
+        <li>Only after you register for courses, you will get access to content.</li>
+        <li>Thereafter you continue the program as a regular student.</li>
+        <li>You can pursue this even as you join another college or degree.</li>
+      </ol>
+    </section>
+
+    <!-- International Students -->
+    <section id="international-students" class="content-section">
+      <h2 class="section-heading">International Students</h2>
+      <p class="section-paragraph">
+        <strong>Are you a learner outside India interested to join this program?</strong><br/>
+        <em>Are you worried about the in-person assessments?</em>
+      </p>
+      <ul class="list-disc list-inside pl-4 text-gray-700">
+        <li>
+          This program is open to learners from all around the globe. 
+          You can study from IIT Madras and earn the BS in Data Science and Applications 
+          irrespective of the country you are from.
+        </li>
+        <li>
+          IIT Madras is setting up modalities to conduct in-person exams in as many countries 
+          as possible. Currently, we conduct in-person exams in the following cities outside India:
+          <ul class="list-disc ml-6">
+            <li>UAE - Dubai, Sharjah, Abu Dhabi</li>
+            <li>Sri Lanka - Colombo, Jaffna</li>
+            <li>Bahrain - Manama</li>
+            <li>Kuwait - Salmiya</li>
+            <li>Oman - Muscat</li>
+          </ul>
+        </li>
+        <li>
+          Students residing in these countries must write exams in the designated exam centres. 
+          Students have to appear for in-person exams roughly once a month.
+        </li>
+        <li>
+          Learners residing in any other country, apart from those shown above, can also enroll for this program 
+          and appear for remote proctored exams. Please write to the following email id with any queries you might have – 
+          <a 
+            href="mailto:ge@study.iitm.ac.in" 
+            class="underline text-blue-600 hover:text-blue-800"
+          >
+            ge@study.iitm.ac.in
+          </a>.
+        </li>
+        <li>
+          Outside India learners who have taken exams with us till date: 159  
+          <a 
+            href="#" 
+            class="underline text-blue-600 hover:text-blue-800"
+          >
+            View detailed location of learners outside India
+          </a>.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-white py-10 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+            >support@study.iitm.ac.in</a
+          >
+          |
+          Phone:
+          <span class="text-gray-200">7850-999966</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding 
+          the program. Our normal response time is 3 working days; it might take
+          a little longer during busy periods. We will share Google Meet links
+          during such periods. Due to the high volume of calls we receive every
+          day, there might be long wait times. In some cases, you might have to
+          call multiple times to successfully connect to us.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIMPLE JS FOR DROPDOWNS & SMOOTH SCROLL ADJUSTMENT -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // close others
+      document.querySelectorAll('.dropdown-menu').forEach(menu => {
+        if (menu !== dropdown) {
+          menu.style.display = 'none';
+        }
+      });
+      // toggle current
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(e) {
+      // If click was not on a dropdown button or inside the dropdown
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(menu => {
+          menu.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

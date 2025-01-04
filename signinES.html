@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras BS Program - Modernized Page</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+
+    /* Hero Section Background */
+    .hero-bg {
+      background: 
+        linear-gradient(
+          120deg,
+          rgba(239, 68, 68, 0.9),
+          rgba(245, 158, 11, 0.9)
+        ),
+        url('https://www.iitm.ac.in/sites/default/files/styles/banner_large/public/2019-12/Main%20Building.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(2px);
+    }
+
+    /* Glowing Card */
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, #f87171, #fbbf24);
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Glow Buttons with Reverse Gradient on Hover */
+    .glow-btn {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      color: white;
+      border-radius: 50px;
+      padding: 12px 24px;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease,
+        background 0.5s ease;
+    }
+    .glow-btn:hover {
+      background: linear-gradient(90deg, #ef4444, #f59e0b);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+    }
+
+    /* Google Button with subtle styling */
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      color: #555;
+      border: 1px solid #ddd;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .google-btn img {
+      width: 20px;
+      margin-right: 10px;
+    }
+    .google-btn:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Testimonial Box */
+    .testimonial {
+      background: linear-gradient(
+        135deg,
+        rgba(239, 68, 68, 0.06),
+        rgba(245, 158, 11, 0.06)
+      );
+      border-left: 5px solid rgba(239, 68, 68, 0.8);
+      padding: 2rem;
+      border-radius: 1rem;
+      font-style: italic;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial::before {
+      content: "“";
+      position: absolute;
+      top: -2rem;
+      left: -2rem;
+      font-size: 8rem;
+      color: rgba(239, 68, 68, 0.2);
+      transform: rotate(15deg);
+    }
+    .testimonial::after {
+      content: "”";
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      font-size: 8rem;
+      color: rgba(239, 68, 68, 0.2);
+      transform: rotate(-15deg);
+    }
+
+    /* Announcement Ribbon */
+    .announcement {
+      background: linear-gradient(90deg, #ef4444, #f59e0b);
+      color: white;
+      padding: 1rem;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .announcement:hover {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header Section -->
+  <header class="bg-red-700 text-white shadow-lg">
+    <div class="container mx-auto flex flex-wrap items-center justify-between py-4 px-6">
+      <div class="flex items-center space-x-4">
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">IIT Madras</h1>
+      </div>
+
+      <nav class="flex space-x-6 text-lg mt-4 lg:mt-0">
+        <a href="page2.html" class="hover:text-yellow-400 transition-colors">Home</a>
+        <a href="#" class="hover:text-yellow-400 transition-colors"
+          >Programs</a
+        >
+        <a href="#" class="hover:text-yellow-400 transition-colors"
+          >Admissions</a
+        >
+        <a href="#" class="hover:text-yellow-400 transition-colors"
+          >Resources</a
+        >
+        <a href="#" class="hover:text-yellow-400 transition-colors"
+          >Contact</a
+        >
+      </nav>
+
+      <div class="flex space-x-4 mt-4 lg:mt-0">
+        <button
+          class="google-btn"
+          onclick="location.href='https://accounts.google.com/signin'"
+        >
+          <img
+            src="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+            alt="Google Logo"
+          />
+          Sign in with Google
+        </button>
+        <button class="glow-btn">Apply Now</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-bg py-20 text-white text-center relative overflow-hidden">
+    <div class="container mx-auto relative z-10">
+      <h2 class="text-5xl font-extrabold mb-4 drop-shadow-lg">Welcome to IIT Madras</h2>
+      <p class="text-2xl mb-6 font-semibold">
+        Explore world-class Bachelor of Science Programs
+      </p>
+      <button class="glow-btn px-8 py-3 font-bold">Discover More</button>
+    </div>
+  </section>
+
+  <!-- Announcement Section -->
+  <div class="announcement my-8 mx-4 md:mx-auto md:max-w-3xl">
+    Applications Open Now for January 2025 Batch | Applications Close: January
+    02, 2025 | Exam: February 23, 2025
+  </div>
+
+  <!-- Latest Updates Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto text-center">
+      <h3 class="text-3xl font-bold text-red-700 mb-8">Latest Updates</h3>
+      <div class="max-w-md mx-auto">
+        <div class="card">
+          <ul class="text-left space-y-4 text-lg">
+            <li>Quiz 1: 23 Feb 2025</li>
+            <li>Quiz 2: 16 Mar 2025</li>
+            <li>End Term: 13 Apr 2025</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto">
+      <h3 class="text-3xl font-bold text-red-700 mb-8 text-center">
+        Testimonials from our Learners
+      </h3>
+      <div class="testimonial mx-auto max-w-4xl text-gray-700">
+        I would like to thank the whole team of IITM Online Degree for coming up
+        with the concept of solving questions with the professors. It has not
+        only helped me in improving my performance drastically in graded
+        assignments, but also plays a relevant role in making the concepts more
+        clear.
+        <p class="mt-4 font-semibold text-right text-gray-800">
+          – Parth Shukla, Lucknow, India
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-10">
+    <div class="container mx-auto text-center space-y-4">
+      <p class="text-sm font-light">
+        IIT BS Degree Office, 3rd Floor, ICSR Building, IIT Madras, Chennai -
+        600036
+      </p>
+      <p class="text-sm font-light">
+        7850-999966 (Mon-Fri 9am-6pm) | support@study.iitm.ac.in
+      </p>
+      <p class="text-sm font-light">© IIT Madras. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

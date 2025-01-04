@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIT Madras - BS in Electronic Systems | Academics</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Inter Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      /* Slightly softer background instead of bright cyan */
+      background-color: #ffffff;
+    }
+
+    /* HEADER & FOOTER BACKGROUND (Dark Blue-ish) */
+    .brand-header {
+      background-color: #009AB2; /* Header */
+    }
+    .brand-footer {
+      background-color: #003f4f; /* Footer */
+    }
+
+    /* ANNOUNCEMENT MARQUEE */
+    .announcement-marquee {
+      background: #003f4f;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 0.5rem 0;
+    }
+    .announcement-marquee span {
+      display: inline-block;
+      white-space: nowrap;
+      animation: text-scroll 30s linear infinite;
+      padding-left: 100%;
+    }
+    @keyframes text-scroll {
+      0%   { transform: translateX(100%); }
+      25%  { transform: translateX(0%); }
+      75%  { transform: translateX(-100%); }
+      100% { transform: translateX(-200%); }
+    }
+    .marquee-btn {
+      margin-left: 1rem;
+      padding: 0.4rem 1rem;
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      border-radius: 9999px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .marquee-btn:hover {
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 154, 178, 0.4);
+    }
+
+    /* BUTTONS */
+    .futuristic-btn {
+      background: linear-gradient(
+        90deg,
+        #19DEFF,
+        #009AB2
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .futuristic-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 154, 178, 0.5);
+      background: linear-gradient(
+        90deg,
+        #009AB2,
+        #19DEFF
+      );
+    }
+    .sign-in-btn {
+      background: linear-gradient(
+        90deg,
+        rgba(100, 116, 139, 1),
+        rgba(51, 65, 85, 1)
+      );
+      color: #fff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      border-radius: 9999px;
+      padding: 0.75rem 1.5rem;
+    }
+    .sign-in-btn:hover {
+      transform: scale(1.06) translateY(-2px);
+      box-shadow: 0 10px 20px rgba(51, 65, 85, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(51, 65, 85, 1),
+        rgba(100, 116, 139, 1)
+      );
+    }
+
+    /* NAV DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-menu {
+      display: none; /* Hidden by default */
+      position: absolute;
+      right: 0;
+      top: 100%;
+      background: #009AB2;
+      min-width: 12rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      z-index: 9999;
+      border-radius: 0.25rem;
+      padding: 0.5rem 0;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.2s ease;
+    }
+    .dropdown-menu a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    /* PAGE SECTIONS */
+    section[id] {
+      scroll-margin-top: 6rem; /* so headings are visible after sticky top */
+    }
+    .content-section {
+      /* Give each section a gentle color for modern, soothing look */
+      background-color: #f0fcff; 
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .content-section:hover {
+      background-color: #ebf8fa; 
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .section-heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #009AB2;
+      margin-bottom: 1rem;
+    }
+    .section-paragraph {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      color: #333;
+    }
+    .list-disc.list-inside li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* TABLES */
+    .custom-table {
+      border-radius: 0.75rem;
+      overflow: hidden;
+    }
+
+    /* CERTIFICATES */
+    .certificate-img {
+      border-radius: 1rem;
+      transition: transform 0.2s ease;
+    }
+    .certificate-img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 640px) {
+      nav a {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      .dropdown-menu {
+        min-width: 10rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="brand-header text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-6">
+      <!-- Logo / Title -->
+      <div 
+        class="flex items-center space-x-4 mb-3 md:mb-0 cursor-pointer"
+        onclick="window.location.href='homeES.html'"
+      >
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="w-12 h-12"
+        />
+        <h1 class="text-2xl font-extrabold tracking-wide">
+          IIT Madras
+        </h1>
+      </div>
+
+      <!-- Nav Links with dropdowns for ALL items -->
+      <nav class="flex items-center space-x-4 text-lg font-medium relative">
+        
+        <!-- Academics Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('academicsDropdown')"
+          >
+            Academics
+          </button>
+          <div
+            id="academicsDropdown"
+            class="dropdown-menu"
+          >
+            <!-- 'Overall Structure' -> load academicsES.html (the same page).
+                 The rest are anchors on the same page. -->
+            <a href="academicsES.html">Overall Structure</a>
+            <a href="#course-registrations">Course Registrations</a>
+            <a href="#assessments">Assessments</a>
+            <a href="#exam-cities">Exam Cities</a>
+            <a href="#fee-structure">Fee Structure</a>
+            <a href="#foundation-level">Foundation Level</a>
+            <a href="#diploma-level">Diploma Level</a>
+            <a href="#bs-degree-level">BS Degree Level</a>
+            <a href="#sample-certificates">Sample Certificates</a>
+          </div>
+        </div>
+
+        <!-- Admissions Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('admissionsDropdown')"
+          >
+            Admissions
+          </button>
+          <div
+            id="admissionsDropdown"
+            class="dropdown-menu"
+          >
+            <!-- You can adjust anchors or URLs as per your actual content -->
+            <a href="admissionsES.html#important-dates">Important Dates</a>
+            <a href="admissionsES.html#mandatory-requirements">Mandatory Requirements</a>
+            <a href="admissionsES.html#eligibility-to-apply">Eligibility to Apply</a>
+            <a href="admissionsES.html#application-process">Application Process</a>
+            <a href="admissionsES.html#admission-to-foundation">Admission to the Foundation Level</a>
+            <a href="admissionsES.html#regular-entry">1. Regular Entry</a>
+            <a href="admissionsES.html#jee-based-entry">2. JEE-based Entry</a>
+            <a href="admissionsES.html#international-students">International Students</a>
+          </div>
+        </div>
+
+        <!-- Student Life Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('studentLifeDropdown')"
+          >
+            Student Life
+          </button>
+          <div
+            id="studentLifeDropdown"
+            class="dropdown-menu"
+          >
+            <!-- First link could be a Student Life page, if you have one -->
+            <a href="studentLifeES.html">Student Life</a>
+            <!-- Link to PARADOX external site -->
+            <a
+              href="https://sites.google.com/ds.study.iitm.ac.in/paradox-23/home"
+              target="_blank"
+            >
+              PARADOX / Student Festivals
+            </a>
+          </div>
+        </div>
+
+        <!-- About IITM Dropdown -->
+        <div class="dropdown">
+          <button
+            class="hover:text-yellow-200 transition-colors focus:outline-none"
+            onclick="toggleDropdown('aboutIITMDropdown')"
+          >
+            About IITM
+          </button>
+          <div
+            id="aboutIITMDropdown"
+            class="dropdown-menu"
+          >
+            <a href="aboutIITMES.html#about-iitm">About IIT Madras</a>
+            <a href="aboutIITMES.html#faculty-coordinators">Faculty Co-ordinators</a>
+            <a href="aboutIITMES.html#contact-us">Contact Us</a>
+            <a 
+              href="https://podgoodies.iitmadrasonline.in/" 
+              target="_blank"
+            >Merchandise</a>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex space-x-2 mt-3 md:mt-0">
+        <button
+          onclick="location.href='signinES.html'"
+          class="sign-in-btn font-semibold"
+        >
+          Sign In
+        </button>
+        <button
+          class="futuristic-btn font-semibold"
+          onclick="window.open('https://apply.example.com','_blank')"
+        >
+          Apply Now
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="announcement-marquee">
+    <span>
+      Applications Open Now for January 2025 Batch &nbsp;|&nbsp;
+      Applications Close: January 02, 2025 &nbsp;|&nbsp;
+      Exam: February 23, 2025 &nbsp;&nbsp;
+      <a
+        href="https://apply.example.com"
+        class="marquee-btn"
+        target="_blank"
+      >
+        Apply Now
+      </a>
+    </span>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 py-10">
+
+    <!-- Overall Structure -->
+    <section id="overall-structure" class="content-section">
+      <h2 class="section-heading">Overall Structure</h2>
+      <p class="section-paragraph">
+        The program comprises three levels and a learner has to successfully complete all three
+        levels to get the <strong>BS Degree from IIT Madras</strong>. There is flexibility to 
+        exit at any level. Depending on the courses completed and credits earned, the learner 
+        can receive a Foundation Certificate from <strong>IITM CODE</strong>, or a Diploma from 
+        <strong>IIT Madras</strong>, or the <strong>BS Degree in Electronic Systems</strong> 
+        from IIT Madras.
+      </p>
+      <p class="section-paragraph">
+        <strong>Credits &amp; Duration per level:</strong>
+      </p>
+      <ul class="list-disc list-inside">
+        <li><strong>Foundation Level:</strong> 43 credits | 9 Theory + 5 Labs</li>
+        <li><strong>Diploma Level:</strong> 43 credits | 9 Theory + 3 Labs + 1 Project</li>
+        <li><strong>BS Degree Level:</strong> 56 credits | 12 Theory + 1 Lab + Apprenticeship (optional)</li>
+      </ul>
+      <p class="section-paragraph">
+        The completion time for the entire BS degree ranges from <strong>4 - 8 years</strong>
+        based on the learner’s pace. <em>Each semester</em> has about 12 weeks of coursework,
+        along with in-person invigilated quizzes and End Semester Exams.
+      </p>
+    </section>
+
+    <!-- Course Registrations -->
+    <section id="course-registrations" class="content-section">
+      <h2 class="section-heading">Course Registrations</h2>
+      <p class="section-paragraph">
+        In each term, a learner may register for a maximum of four theory courses
+        (depending on the time they can dedicate to the program). Full-time working
+        professionals and students pursuing other academic programs can opt to take
+        fewer courses, such as 2 or 3 per term, for flexibility.
+      </p>
+      <p class="section-paragraph">
+        <strong>Online Courses &amp; Assignments:</strong> Each course typically runs for 12 weeks
+        with 2-3 hours of video lectures per week, supported by practice questions, text transcripts,
+        and graded assignments. All study materials are provided online.
+      </p>
+    </section>
+
+    <!-- Assessments -->
+    <section id="assessments" class="content-section">
+      <h2 class="section-heading">Assessments</h2>
+      <p class="section-paragraph">
+        There are three main types of assessments for each course:
+      </p>
+      <ul class="list-disc list-inside">
+        <li>Weekly Assignments (online)</li>
+        <li>Monthly in-person Quizzes</li>
+        <li>In-person End Term Exam</li>
+      </ul>
+      <p class="section-paragraph">
+        Some courses also include programming exams, mini projects, vivas, or take-home assignments.
+        Several courses have associated <strong>lab sessions</strong> conducted at the IIT Madras 
+        campus each semester. Some lab sessions may be online or handled through kits that students 
+        can purchase.
+      </p>
+    </section>
+
+    <!-- Exam Cities -->
+    <section id="exam-cities" class="content-section">
+      <h2 class="section-heading">Exam Cities</h2>
+      <p class="section-paragraph">
+        The <em>in-person Invigilated Quizzes</em> and <em>End Semester Exams</em> are held 
+        across multiple cities in India. Exams are also conducted in centers abroad, 
+        such as UAE, Bahrain, Kuwait, Oman, Singapore, and Sri Lanka (where there is sufficient
+        number of students).
+      </p>
+      <p class="section-paragraph">
+        Learners outside of these regions may be allowed to take up remote proctored exams.
+        An additional exam fee may apply for all learners opting to write exams outside India.
+        If you reside outside India and do not find a center in your city/country, 
+        please write to <a href="mailto:es@study.iitm.ac.in" class="underline">es@study.iitm.ac.in</a>
+        for assistance.
+      </p>
+    </section>
+
+    <!-- Fee Structure -->
+    <section id="fee-structure" class="content-section">
+      <h2 class="section-heading">Fee Structure</h2>
+      <p class="section-paragraph">
+        <strong>Pay only for courses you register in each semester.</strong> 
+        The indicative fee per credit and the total fees to earn each certification level 
+        are as follows (for general category students). Actual final fees may be slightly revised.
+      </p>
+      <div class="overflow-x-auto custom-table mb-4 mt-4">
+        <table class="min-w-full bg-white">
+          <thead class="bg-gray-200">
+            <tr>
+              <th class="py-3 px-4 text-left">Level</th>
+              <th class="py-3 px-4 text-left">Fee per credit (INR)</th>
+              <th class="py-3 px-4 text-left">Number of Credits</th>
+              <th class="py-3 px-4 text-left">Fees per level (INR)</th>
+              <th class="py-3 px-4 text-left">Total Fees</th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <tr class="border-b">
+              <td class="py-3 px-4">Foundation</td>
+              <td class="py-3 px-4">Rs. 1000</td>
+              <td class="py-3 px-4">8</td>
+              <td class="py-3 px-4">Rs. 8,000</td>
+              <td class="py-3 px-4">Rs. 80,000</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">Diploma</td>
+              <td class="py-3 px-4">Rs. 2000</td>
+              <td class="py-3 px-4">36</td>
+              <td class="py-3 px-4">Rs. 72,000</td>
+              <td class="py-3 px-4">Rs. 2,48,000</td>
+            </tr>
+            <tr class="border-b">
+              <td class="py-3 px-4">BS in Electronic Systems</td>
+              <td class="py-3 px-4">Rs. 6000</td>
+              <td class="py-3 px-4">56</td>
+              <td class="py-3 px-4">Rs. 3,36,000</td>
+              <td class="py-3 px-4">Rs. 5,84,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-paragraph">
+        <em>Fee waivers</em> are available based on category of learner and family income,
+        ranging from 50% to 75% waiver on the <strong>institution fee advance</strong>.
+        For candidates who are <em>outside India</em> and studying in the program,
+        there will be facilitation fees for exams in addition to the above.
+      </p>
+    </section>
+
+    <!-- Foundation Level -->
+    <section id="foundation-level" class="content-section">
+      <h2 class="section-heading">Foundation Level</h2>
+      <p class="section-paragraph">
+        The Foundation Level comprises <strong>43 credits</strong>:
+        <em>9 Theory Courses + 5 Lab Courses</em>. It can be completed in 1 - 3 years,
+        with approximately 10 hours of study per course per week.
+      </p>
+      <p class="section-paragraph">
+        <strong>Requirements for Registration:</strong><br/>
+        <u>Without JEE:</u> Apply for and clear the Qualifier Exam.<br/>
+        <u>With JEE:</u> A student who qualified for JEE Advanced 2023 is automatically
+        eligible for admission into the Foundation Level of the BS program.
+      </p>
+      <p class="section-paragraph">
+        On completing the 10 Foundation courses successfully, learners can:
+      </p>
+      <ul class="list-disc list-inside">
+        <li>
+          <strong>Exit:</strong> with a Foundational Certificate from 
+          <em>IITM CODE</em>
+        </li>
+        <li>
+          <strong>Proceed to next level:</strong> join the <em>Diploma Level</em>
+        </li>
+      </ul>
+      <p class="section-paragraph">
+        <strong>Sample Courses in Foundation:</strong>
+      </p>
+      <ul class="list-disc list-inside">
+        <li>HS1101: English I</li>
+        <li>MA1101: Math for Electronics I</li>
+        <li>HS1102: English II</li>
+        <li>EE1101: Electronic Systems Thinking and Circuits</li>
+        <li>CS1101: Introduction to C Programming</li>
+        <li>CS1102: Introduction to Linux and Programming</li>
+        <!-- etc. (list can be extended) -->
+      </ul>
+    </section>
+
+    <!-- Diploma Level -->
+    <section id="diploma-level" class="content-section">
+      <h2 class="section-heading">Diploma Level</h2>
+      <p class="section-paragraph">
+        The Diploma Level comprises <strong>43 credits</strong>:
+        <em>9 Theory Courses + 3 Labs + 1 Project</em>. Students must have successfully
+        completed all Foundation Level requirements (86 credits in total) to register
+        for Diploma Level courses.
+      </p>
+      <p class="section-paragraph">
+        After completing the Diploma Level, learners have two options:
+      </p>
+      <ul class="list-disc list-inside">
+        <li>
+          <strong>Option 1:</strong> Proceed to the BS Degree Level 
+          (if Foundation + Diploma requirements are completed)
+        </li>
+        <li>
+          <strong>Option 2:</strong> Exit with a <em>Diploma in Electronic Systems</em>
+          from IIT Madras
+        </li>
+      </ul>
+      <p class="section-paragraph">
+        <strong>Sample Courses in Diploma:</strong>
+      </p>
+      <ul class="list-disc list-inside">
+        <li>MA2101: Math for Electronics II</li>
+        <li>EE2101: Signals and Systems</li>
+        <li>EE2102: Analog Electronic Systems</li>
+        <li>CS2102: Python Programming</li>
+        <li>EE3101: Digital Signal Processing</li>
+        <!-- etc. -->
+      </ul>
+    </section>
+
+    <!-- BS Degree Level -->
+    <section id="bs-degree-level" class="content-section">
+      <h2 class="section-heading">BS Degree Level</h2>
+      <p class="section-paragraph">
+        The BS degree level comprises <strong>56 credits</strong>:
+        <em>12 Theory Courses + 1 Laboratory + 1 optional Apprenticeship</em>.
+        Students should earn a total of <strong>142 credits</strong> across all levels
+        (Foundation + Diploma + BS) to be awarded the BS degree in Electronic Systems.
+      </p>
+      <p class="section-paragraph">
+        <strong>Core Courses at the Degree Level include:</strong>
+      </p>
+      <ul class="list-disc list-inside">
+        <li>EE4101: Embedded Linux and FPGAs</li>
+        <li>EE3105: Electromagnetic Fields and Transmission Lines</li>
+        <li>EE4102: Electronic Product Design</li>
+        <li>GN3001: Strategies for Professional Growth</li>
+      </ul>
+      <p class="section-paragraph">
+        Additionally, learners must choose <strong>5 Department Electives</strong> (20 credits)
+        from a curated list (e.g. Probability &amp; Statistics, Communication Systems, IoT, 
+        Semiconductor Devices, Analog Circuits, Digital IC Design, etc.), and can also take up
+        to <strong>8 Open Electives</strong> (e.g. Operating Systems, DBMS, Machine Learning 
+        Foundation, Deep Learning, etc.) as part of non-CGPA or NPTEL courses.
+      </p>
+      <p class="section-paragraph">
+        <em>Exit:</em> Once the learner completes 142 credits and the course requirements,
+        they will be awarded a <strong>BS Degree in Electronic Systems</strong> from IIT Madras.
+      </p>
+    </section>
+
+    <!-- Sample Certificates -->
+    <section id="sample-certificates" class="content-section">
+      <h2 class="section-heading">Sample Certificates</h2>
+      <p class="section-paragraph">
+        Below are sample certificates for <em>BS Degree in Electronic Systems</em>, 
+        <em>Diploma in Electronic Systems</em>, and <em>Foundation in Electronic Systems</em>. 
+        Click on each thumbnail to open the certificate image.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+        <!-- Certificate 1 -->
+        <div class="text-center">
+          <a
+            href="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+            target="_blank"
+            class="block transform hover:scale-105"
+          >
+            <img
+              src="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+              alt="BS Degree in Electronic Systems"
+              class="certificate-img mx-auto"
+              style="max-width: 180px;"
+            />
+          </a>
+          <p class="mt-2 font-medium">BS Degree in Electronic Systems</p>
+        </div>
+
+        <!-- Certificate 2 -->
+        <div class="text-center">
+          <a
+            href="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+            target="_blank"
+            class="block transform hover:scale-105"
+          >
+            <img
+              src="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+              alt="Diploma in Electronic Systems"
+              class="certificate-img mx-auto"
+              style="max-width: 180px;"
+            />
+          </a>
+          <p class="mt-2 font-medium">Diploma in Electronic Systems</p>
+        </div>
+
+        <!-- Certificate 3 -->
+        <div class="text-center">
+          <a
+            href="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+            target="_blank"
+            class="block transform hover:scale-105"
+          >
+            <img
+              src="https://study.iitm.ac.in/es/assets/img/certificates/cert_6_low.jpg"
+              alt="Foundation in Electronic Systems"
+              class="certificate-img mx-auto"
+              style="max-width: 180px;"
+            />
+          </a>
+          <p class="mt-2 font-medium">Foundation in Electronic Systems</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="brand-footer text-white py-10 mt-12">
+    <div class="container mx-auto px-6">
+      <div class="text-center space-y-4">
+        <!-- Contact Info -->
+        <p class="text-sm font-light">
+          Contact Us:
+          <a
+            href="mailto:support@study.iitm.ac.in"
+            class="underline text-gray-200"
+          >
+            support@study.iitm.ac.in
+          </a>
+          |
+          Phone:
+          <span class="text-gray-200">1234-567890</span> (Mon-Fri 9am-6pm)
+        </p>
+        <p class="text-sm font-light">
+          IIT BS Degree Office, 3rd Floor, ICSR Building,
+          IIT Madras, Chennai - 600036
+        </p>
+        <p class="text-sm max-w-2xl mx-auto text-gray-300 leading-relaxed">
+          Please use ONLY the above channels for any queries regarding
+          the program. Response time is 3 working days; it may be longer during busy periods.
+        </p>
+        <p class="text-sm font-light">
+          <a href="#" class="hover:text-gray-400">View Site Map</a> |
+          <a href="#" class="hover:text-gray-400">Privacy Policy</a> |
+          <a href="#" class="hover:text-gray-400">Terms of Service</a>
+        </p>
+        <p class="text-sm font-light">
+          © IIT Madras. All Rights Reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Dropdown -->
+  <script>
+    function toggleDropdown(menuId) {
+      const dropdown = document.getElementById(menuId);
+      // Close any other open dropdowns
+      document.querySelectorAll('.dropdown-menu').forEach(dm => {
+        if (dm !== dropdown) dm.style.display = 'none';
+      });
+      // Toggle the current dropdown
+      if (dropdown.style.display === 'block') {
+        dropdown.style.display = 'none';
+      } else {
+        dropdown.style.display = 'block';
+      }
+    }
+
+    // Close dropdown if clicking outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropdown button') && !e.target.closest('.dropdown-menu')) {
+        document.querySelectorAll('.dropdown-menu').forEach(dm => {
+          dm.style.display = 'none';
+        });
+      }
+    }
+  </script>
+</body>
+</html>

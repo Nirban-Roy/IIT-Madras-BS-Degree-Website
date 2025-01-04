@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Academic Calendar - IIT Madras</title>
+
+  <!-- Tailwind CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Example Font (Inter) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6; /* Light background outside main content */
+    }
+
+    /* HEADER (brand color) */
+    .brand-header {
+      background-color: #9D2235; /* or #DC2626, pick your brand-red */
+    }
+
+    /* Collapsible Sidebar */
+    .sidebar {
+      transition: width 0.3s;
+    }
+    .sidebar.collapsed {
+      width: 64px; /* narrower when collapsed */
+    }
+    .sidebar.collapsed .sidebar-text {
+      display: none;
+    }
+
+    /* Sidebar Buttons */
+    .sidebar button {
+      display: flex;
+      align-items: center;
+      color: #e5e7eb; /* text-gray-200 */
+      padding: 0.75rem 1rem;
+      transition: background 0.3s, color 0.3s;
+      width: 100%;
+      text-align: left;
+    }
+    .sidebar button:hover {
+      background: #1f2937; /* bg-gray-800 */
+      color: #fff;
+    }
+    .sidebar .sidebar-icon {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    /* Cards + Hover Shadow */
+    .hover-shadow:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Gradient button (Blue→Red or custom brand) */
+    .gradient-btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #3B82F6, #EF4444);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 0.9rem;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .gradient-btn:hover {
+      background: linear-gradient(90deg, #EF4444, #3B82F6);
+      transform: translateY(-1px);
+    }
+
+    /* Scrollbar styling (optional) */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #9D2235;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- TOP HEADER -->
+  <header class="brand-header text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
+      <!-- Left: Logo + Title -->
+      <div class="flex items-center space-x-3">
+        <img
+          src="https://ds.study.iitm.ac.in/static/img/logo.png"
+          alt="IIT Madras Logo"
+          class="h-12 w-12"
+        />
+        <h1 class="text-xl md:text-2xl font-bold tracking-wide">
+          IIT Madras: Degree in Data Science &amp; Applications
+        </h1>
+      </div>
+      <!-- Right: Sign Out Only -->
+      <div class="flex items-center space-x-4">
+        <button
+          class="bg-gray-800 hover:bg-gray-900 px-4 py-2 rounded-full"
+          onclick="location.href='signinDS.html'"
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER (Sidebar + Content) -->
+  <div class="flex flex-1 overflow-hidden">
+
+    <!-- SIDEBAR (same links/structure as in other pages) -->
+    <aside
+      id="sidebar"
+      class="sidebar w-64 bg-gray-900 text-white fixed top-[4.5rem] left-0 pt-4 pb-4 flex flex-col z-40"
+      style="max-height: calc(100vh - 4.5rem);"
+    >
+      <!-- Sidebar Top + Collapse Button -->
+      <div class="flex items-center justify-between px-4 mb-4">
+        <h2 class="text-sm font-bold sidebar-text">Menu</h2>
+        <button
+          class="text-gray-200 hover:text-white focus:outline-none"
+          onclick="toggleSidebar()"
+          title="Collapse/Expand"
+        >
+          <!-- Collapse Icon -->
+          <svg
+            class="w-5 h-5 transform"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M9.293 16.707a1 1 0 
+              010-1.414L13.586 
+              11 9.293 6.707a1 1 
+              0 
+              111.414-1.414l5 5a1 1 
+              0 
+              010 
+              1.414l-5 
+              5a1 1 
+              0 
+              01-1.414 
+              0z"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- FULL MENU BUTTONS -->
+      <nav class="flex-grow overflow-auto px-2 space-y-1">
+        <!-- Current Courses -->
+        <button onclick="location.href='myCurrentCourses.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M2 
+            3.5A1.5 
+            1.5 0 
+            013.5 
+            2H14a2 
+            2 
+            0 
+            012 
+            2v12a2 
+            2 
+            0 
+            01-2 
+            2H5a1 
+            1 
+            0 
+            01-1-1v-1H3.5A1.5 
+            1.5 
+            0 
+            012 
+            14.5v-11zM6 
+            6h7v2H6V6z"/>
+          </svg>
+          <span class="sidebar-text">My Current Courses</span>
+        </button>
+        <!-- Completed & Pending -->
+        <button onclick="location.href='completedPendingCourses.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10 
+            2a8 
+            8 
+            0 
+            100 
+            16 
+            8 
+            8 
+            0 
+            000-16zm-.75 
+            4.75a.75.75 
+            0 
+            011.5 
+            0v3.25h2a.75.75 
+            0 
+            010 
+            1.5h-2.75a.75.75 
+            0 
+            01-.75-.75V6.75z"/>
+          </svg>
+          <span class="sidebar-text">Completed &amp; Pending Courses</span>
+        </button>
+        <!-- My Completed Projects -->
+        <button onclick="location.href='myCompletedProjects.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M6 
+            3H4a1 
+            1 
+            0 
+            00-1 
+            1v12a1 
+            1 
+            0 
+            001 
+            1h2V3zM16 
+            3h-2v14h2a1 
+            1 
+            0 
+            001-1V4a1 
+            1 
+            0 
+            00-1-1zM8 
+            3v14h4V3H8z"/>
+          </svg>
+          <span class="sidebar-text">My Completed Projects</span>
+        </button>
+        <!-- Hall Ticket & Exam Cities -->
+        <button onclick="location.href='hallTicket.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M4 
+            3h12a1 
+            1 
+            0 
+            011 
+            1v2h-1a2 
+            2 
+            0 
+            100 
+            4h1v2a1 
+            1 
+            0 
+            01-1 
+            1H4a1 
+            1 
+            0 
+            01-1-1v-2h1a2 
+            2 
+            0 
+            100-4H3V4a1 
+            1 
+            0 
+            011-1z"/>
+          </svg>
+          <span class="sidebar-text">Hall Ticket &amp; Exam Cities</span>
+        </button>
+        <!-- Academic Calendar -->
+        <button onclick="location.href='academicCalendar.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M6 
+            2a1 
+            1 
+            0 
+            10-2 
+            0v1H3a2 
+            2 
+            0 
+            00-2 
+            2v2h18V5a2 
+            2 
+            0 
+            00-2-2h-1V2a1 
+            1 
+            0 
+            10-2 
+            0v1H6V2z"/>
+            <path d="M2 
+            10v6a2 
+            2 
+            0 
+            002 
+            2h12a2 
+            2 
+            0 
+            002-2v-6H2z"/>
+          </svg>
+          <span class="sidebar-text">Academic Calendar</span>
+        </button>
+        <!-- Certificates -->
+        <button onclick="location.href='certificates.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9 
+            2a1 
+            1 
+            0 
+            00-1 
+            1v3.273A6.992 
+            6.992 
+            0 
+            003.045 
+            13H2a1 
+            1 
+            0 
+            000 
+            2h6a6.978 
+            6.978 
+            0 
+            002.661-.536 
+            4.488 
+            4.488 
+            0 
+            01-.431-1.854 
+            4.478 
+            4.478 
+            0 
+            011.877-3.654A7 
+            7 
+            0 
+            009 
+            2z"/>
+          </svg>
+          <span class="sidebar-text">Certificates</span>
+        </button>
+        <!-- Documents for Download -->
+        <button onclick="location.href='docsForDownload.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M6 
+            2a2 
+            2 
+            0 
+            00-2 
+            2v10c0 
+            1.1.9 
+            2 
+            2 
+            2h5v2h2v-2h1a2 
+            2 
+            0 
+            002-2V4a2 
+            2 
+            0 
+            00-2-2H6zm3 
+            3h6v1H9V5zm0 
+            2h6v1H9V7zm0 
+            2h6v1H9V9z"/>
+          </svg>
+          <span class="sidebar-text">Documents for Download</span>
+        </button>
+        <!-- Submitted Documents -->
+        <button onclick="location.href='submittedDocs.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M6 
+            2a2 
+            2 
+            0 
+            00-2 
+            2v10c0 
+            1.1.9 
+            2 
+            2 
+            2h8v-2H6V4h8v2h2V4a2 
+            2 
+            0 
+            00-2-2H6zm8 
+            7H9v1h5v-1zm-5 
+            3h5v1H9v-1z"/>
+          </svg>
+          <span class="sidebar-text">Submitted Documents</span>
+        </button>
+        <!-- Payments & Transactions -->
+        <button onclick="location.href='payments.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M4 
+            4h12a2 
+            2 
+            0 
+            012 
+            2v3H2V6a2 
+            2 
+            0 
+            012-2zm14 
+            7v3a2 
+            2 
+            0 
+            01-2 
+            2H4a2 
+            2 
+            0 
+            01-2-2v-3h16zm-7 
+            2H5a1 
+            1 
+            0 
+            110-2h6a1 
+            1 
+            0 
+            110 
+            2z"/>
+          </svg>
+          <span class="sidebar-text">Payments &amp; Transactions</span>
+        </button>
+        <!-- Issues & Queries -->
+        <button onclick="location.href='issuesQueries.html'">
+          <svg
+            class="sidebar-icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path d="M1 
+            10a9 
+            9 
+            0 
+            1116.32 
+            5.907l2.387 
+            2.386a1 
+            1 
+            0 
+            01-1.414 
+            1.414l-2.386-2.387A9 
+            9 
+            0 
+            011 
+            10zm8-3a1 
+            1 
+            0 
+            011-1h.02a1 
+            1 
+            0 
+            110 
+            2H10a1 
+            1 
+            0 
+            110-2zM9 
+            11a1 
+            1 
+            0 
+            102 
+            0 
+            1 
+            1 
+            0 
+            00-2 
+            0z"/>
+          </svg>
+          <a href="https://study-supportdesk.freshdesk.com/support/login">
+          <span class="sidebar-text">Issues &amp; Queries</span></a>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- PAGE CONTENT -->
+    <main class="ml-64 flex-1 p-4 md:p-8">
+      <!-- Back to Dashboard Button -->
+      <div class="mb-4">
+        <button 
+          class="gradient-btn"
+          onclick="location.href='dashboard.html'"
+        >
+          « Back to Dashboard
+        </button>
+      </div>
+
+      <!-- Title / Info  -->
+      <div class="mb-6">
+        <h2 class="text-2xl font-bold text-gray-700 mb-2">Academic Calendar</h2>
+        <p class="text-sm text-gray-600">
+          We recommend that you add all the calendars below to your student email’s Google Calendar 
+          by clicking the <em>“Add Calendar”</em> buttons.
+        </p>
+      </div>
+
+      <!-- Common Term Calendar -->
+      <div class="mb-6 bg-white rounded-lg shadow p-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+          Common Term Calendar
+        </h3>
+        <p class="text-sm text-gray-600 mt-2">
+          This calendar shows the overall term schedule common for all learners - 
+          content release dates, assignment deadlines, quiz dates, end term dates, 
+          course registration dates, etc.
+        </p>
+        <div class="mt-3">
+          <button
+            class="gradient-btn"
+            onclick="alert('Calendar added to your Google Calendar!')"
+          >
+            Add Calendar
+          </button>
+        </div>
+      </div>
+
+      <!-- Course Calendars -->
+      <div class="mb-6 bg-white rounded-lg shadow p-4">
+        <h3 class="text-lg font-semibold text-gray-800">
+          Course Calendars
+        </h3>
+        <p class="text-sm text-gray-600 mt-2">
+          These calendars show events specific to the courses you have registered for 
+          - live sessions, mock tests, etc.
+        </p>
+        <div class="mt-3">
+          <button
+            class="gradient-btn"
+            onclick="alert('Course calendars added to your Google Calendar!')"
+          >
+            Add Calendar
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer Note / disclaimers -->
+      <div class="text-xs text-gray-500 mt-6 border-t pt-4 leading-relaxed">
+        Reporting harassment: IITM BS Degree Team is committed to ensuring that everyone is 
+        equally valued and treats one another with respect...
+        <br/><br/>
+        For any other queries or issues,
+        <a href="#" class="underline text-blue-600">click here</a> to report them or ask for support.
+      </div>
+    </main>
+  </div><!-- /MAIN CONTAINER -->
+
+  <!-- BOTTOM FOOTER -->
+  <footer class="bg-gray-900 text-gray-200 text-center text-sm py-3">
+    © IIT Madras. All Rights Reserved.
+  </footer>
+
+  <!-- JavaScript for sidebar collapse -->
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    function toggleSidebar() {
+      sidebar.classList.toggle('collapsed');
+    }
+  </script>
+</body>
+</html>
